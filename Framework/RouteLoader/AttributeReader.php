@@ -8,6 +8,8 @@ use ReflectionMethod;
 use ReflectionAttribute;
 use SplFileObject;
 use App\Framework\RouteLoader\Attributes\Route;
+use App\Framework\RouteLoader\Exception\AttributeReaderException;
+
 
 /**
  * Class PhpAttributeReader
@@ -77,7 +79,7 @@ class AttributeReader
             if (class_exists($fullClassName) === false) {
                 $msg = 'Unable to parse file: ' . $this->phpFile->getFilename() .
                     ', class: ' . $fullClassName . ' not found';
-                // throw new AttributeReaderException($msg);
+                throw new AttributeReaderException($msg);
             }
 
             $result = $this->findMethodsWithRouteAttribute($fullClassName);
@@ -117,7 +119,7 @@ class AttributeReader
     protected function search(string $type, string $line): bool
     {
         if (!in_array($type, $this->allowedTypes, true)) {
-            // throw new AttributeReaderException('Invalid attribute search type: '.$type);
+            throw new AttributeReaderException('Invalid attribute search type: '.$type);
         }
 
         if (isset($this->$type)) {
