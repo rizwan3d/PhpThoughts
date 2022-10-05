@@ -23,7 +23,7 @@ $global = $container->get(_Global::class);
 (require __DIR__ . '/database.php')($app);
 
 // Register routes
-(require __DIR__ . '/routes.php')($app,$global);
+(require __DIR__ . '/routes.php')($app);
 
 // Register middleware
 (require __DIR__ . '/middleware.php')($app);

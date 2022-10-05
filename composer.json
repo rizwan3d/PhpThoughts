@@ -7,13 +7,15 @@
     "illuminate/database": "^9.32",
     "illuminate/pagination": "v9.31.0",
     "rakit/validation": "^1.4",
-    "firebase/php-jwt": "^6.3"
+    "firebase/php-jwt": "^6.3",
+    "squidit/slim-attribute-router": "^0.1.2"
   },
   "autoload": {
     "psr-4": {
       "App\\": "Modules",
       "App\\Framework\\Config\\": "Framework\\Config",
-      "App\\Framework\\": "Framework\\Action"
+      "App\\Framework\\": "Framework\\Action",
+      "App\\Framework\\RouteLoader\\": "Framework\\RouteLoader"
     }
   },
   "config": {
