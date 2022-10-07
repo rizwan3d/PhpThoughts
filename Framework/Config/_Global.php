@@ -14,5 +14,9 @@ class _Global
         return $this->settings[$key];
       return null;
     }
+
+    public function set($key,$val){
+       return $this->settings[$key] = $val;
+   }
 }
 

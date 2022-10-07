@@ -12,9 +12,10 @@ class AuthService{
 		$this->userRepository = $userRepository;
 	}
 
-	public function myUser(): ?User
+	public function getAllUser(): ?array
 	{
-		return $this->userRepository->getUserById(20);
+		$users = $this->userRepository->getUsers();
+		return $users;
 	}
 	// private $user;
 	// public $secret = 'NOTHINGISIMPPOSBILE630';

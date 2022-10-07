@@ -52,9 +52,6 @@ return function (App $app)
             case 'DELETE':
                 $app->delete($routePattern, $classMethod->getMethodName());
             break;
-            case 'HEAD':
-                $app->head($routePattern, $classMethod->getMethodName());
-            break;
             default:
             break;
         }

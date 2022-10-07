@@ -20,7 +20,7 @@ $app = $container->get(App::class);
 $global = $container->get(_Global::class);
 
 // Load Database
-(require __DIR__ . '/database.php')($app);
+// (require __DIR__ . '/database.php')($app);
 
 // Register routes
 (require __DIR__ . '/routes.php')($app);
