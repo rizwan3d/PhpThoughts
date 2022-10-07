@@ -17,6 +17,7 @@ final class UserAction extends Action {
 
     #[Route('/',['GET'])]
     public function __invoke(Request $request, Response $response, $args): Response {    
-        return $this->success($response, ["msg" => "ok" , 'data' => $this->authService->myUser()]);
+        $users = $this->authService->getAllUser();
+        return $this->success($response, ["msg" => "ok" , 'data' => $users]);
     }
 }

@@ -1,12 +1,31 @@
 <?php
 
 namespace App\Auth\Domain\Entities;
-use Illuminate\Database\Eloquent\Model;
+use DateTimeImmutable;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
-class User extends Model{
+#[Entity, Table(name: 'users')]
+final class User
+{
+    #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
+    public int $id;
 
-   protected $table = 'users';
-   protected $fillable = ['user_name','email','password','phone_no', 'address','created_at', 'updated_at', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'];
-   protected $hidden = ['updated_at','deleted_at','created_by','updated_by', 'deleted_by', 'password'];
+    #[Column(type: 'string', unique: true, nullable: false)]
+    public string $email;
 
+    #[Column(type: 'string', nullable: true)]
+    public string $name;
+
+    #[Column(name: 'registered_at', type: 'datetimetz_immutable', nullable: false)]
+    public DateTimeImmutable $registeredAt;
+
+    public function __construct(string $email)
+    {
+        $this->email = $email;
+        $this->registeredAt = new DateTimeImmutable('now');
+    }  
 }
