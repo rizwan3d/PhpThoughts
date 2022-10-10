@@ -16,7 +16,8 @@
       "App\\": "Modules",
       "App\\Framework\\Config\\": "Framework\\Config",
       "App\\Framework\\": "Framework\\Action",
-      "App\\Framework\\RouteLoader\\": "Framework\\RouteLoader"
+      "App\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
+      "App\\Framework\\Middleware\\": "Framework\\Middleware"
     }
   },
   "config": {

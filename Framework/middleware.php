@@ -2,6 +2,7 @@
 
 use Slim\App;
 use Selective\BasePath\BasePathMiddleware;
+use App\Framework\Middleware\TrailingMiddleware;
 
 return function (App $app) {
     // Parse json, form data and xml
@@ -11,6 +12,8 @@ return function (App $app) {
     $app->addRoutingMiddleware();
 
     $app->add(new BasePathMiddleware($app));
+
+    $app->add(TrailingMiddleware::class);
 
     // Handle exceptions
     $app->addErrorMiddleware(true, true, true);
