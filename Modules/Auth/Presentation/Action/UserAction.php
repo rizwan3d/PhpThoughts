@@ -8,6 +8,7 @@ use App\Auth\Domain\Entities\User;
 use App\Auth\Services\AuthService;
 use App\Framework\Action;
 use App\Framework\RouteLoader\Attributes\Route;
+use App\Auth\Presentation\Middleware\AuthMiddleware;
 
 final class UserAction extends Action {
 
@@ -15,7 +16,7 @@ final class UserAction extends Action {
 		$this->authService = $authService;
 	}
 
-    #[Route('/',['GET'])]
+    #[Route('/',['GET'],AuthMiddleware::class)]
     public function __invoke(Request $request, Response $response, $args): Response {    
         $users = $this->authService->getAllUser();
         return $this->success($response, ["msg" => "ok" , 'data' => $users]);

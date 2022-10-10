@@ -14,6 +14,8 @@ class Route
 
     protected ?string $name;
 
+    protected $middleware;
+
     protected array $allowedMethods = [
         'GET',
         'POST',
@@ -24,11 +26,17 @@ class Route
         'HEAD',
     ];
 
-    public function __construct(string $pattern, array $methods, ?string $name = null)
+    public function __construct(string $pattern, array $methods,$middleware = null, ?string $name = null)
     {
         $this->setPattern($pattern);
         $this->setMethods($methods);
         $this->setName($name);
+        $this->setMiddleware($middleware);
+    }
+
+    public function setMiddleware($middleware = null)
+    {
+        $this->middleware = $middleware;
     }
 
     public function setPattern(string $pattern): void
@@ -78,5 +86,10 @@ class Route
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    public function getMiddleware()
+    {
+        return $this->middleware;
     }
 }

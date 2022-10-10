@@ -25,6 +25,7 @@ return function (App $app)
     {
         $routePattern = $classMethod->getRoutePattern();
         $requestMethods = $classMethod->getRouteMethods();
+        $requestMiddleware = $classMethod->getMiddleware();
         // Check for duplicate entries
         if (array_key_exists($routePattern, $routePatterns))
         {
@@ -35,26 +36,29 @@ return function (App $app)
                 continue;
             }
         }
+        $rote = null;
         switch ($requestMethods[0])
         {
             case 'GET':
-                $app->get($routePattern, $classMethod->getMethodName());
+                $rote = $app->get($routePattern, $classMethod->getMethodName());                
             break;
             case 'POST':
-                $app->post($routePattern, $classMethod->getMethodName());
+                $rote = $app->post($routePattern, $classMethod->getMethodName());
             break;
             case 'PUT':
-                $app->put($routePattern, $classMethod->getMethodName());
+                $rote = $app->put($routePattern, $classMethod->getMethodName());
             break;
             case 'PATCH':
-                $app->patch($routePattern, $classMethod->getMethodName());
+                $rote = $app->patch($routePattern, $classMethod->getMethodName());
             break;
             case 'DELETE':
-                $app->delete($routePattern, $classMethod->getMethodName());
+                $rote = $app->delete($routePattern, $classMethod->getMethodName());
             break;
             default:
             break;
         }
+
+        if($rote && $requestMiddleware) $rote->add($requestMiddleware);
     }
 };
     

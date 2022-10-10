@@ -46,6 +46,14 @@ class ClassMethod
         return $this->route->getPattern();
     }
 
+     /**
+     * @return Middleware
+     */
+    public function getMiddleware()
+    {
+        return $this->route->getMiddleware();
+    }
+
     /**
      * @return array
      */

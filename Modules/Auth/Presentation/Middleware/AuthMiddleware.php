@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Auth\Middleware;
+namespace App\Auth\Presentation\Middleware;
 
 use App\Auth\Auth;
 use Firebase\JWT\Key;
