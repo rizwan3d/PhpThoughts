@@ -58,7 +58,15 @@ return function (App $app)
             break;
         }
 
-        if($rote && $requestMiddleware) $rote->add($requestMiddleware);
+        if($rote && $requestMiddleware) {
+            if(is_array($requestMiddleware) && count($requestMiddleware) > 0){
+                foreach ($requestMiddleware as $middleware) {
+                    $rote->add($middleware);
+                }
+            }
+            else
+                $rote->add($requestMiddleware);
+        }
     }
 };
     
