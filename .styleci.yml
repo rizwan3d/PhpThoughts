@@ -1,0 +1,13 @@
+php:
+  risky: false
+  version: 8.1
+  preset: recommended
+  tab-width: 4
+  use-tabs: false
+  finder:
+    exclude:
+      - "storage"
+      - "vendor"
+    name: "*.php"
+    not-name:
+      - "_ide_helper.php"
