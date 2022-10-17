@@ -22,7 +22,7 @@ PhpThoughts is accessible, yet powerful, providing tools needed for large, robus
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found [here](LICENSE.md).
+Thank you for considering contributing to the PhpThoughts framework! The contribution guide can be found [here](LICENSE.md).
 
 ## License
 
