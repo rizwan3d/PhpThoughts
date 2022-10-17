@@ -3,14 +3,11 @@
 namespace App\Framework\Cli\Commands;
 
 use App\Framework\Config\_Global;
-use Ratchet\App;
-use Ratchet\Server\IoServer;
-use Ratchet\Http\HttpServer;
-use Ratchet\WebSocket\WsServer;
 use App\Framework\RouteLoader\FileLoader;
 use App\Framework\RouteLoader\RouteCollector;
+use App\Framework\Cli\Interface\CommandInterface;
 
-final class Socket
+final class Socket implements CommandInterface
 {
 
     private $settings;
