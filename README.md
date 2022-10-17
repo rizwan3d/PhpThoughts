@@ -9,7 +9,7 @@
 
 ## About PhpThoughts
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+PhpThoughts is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. PhpThoughts attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
 - Simple, fast routing engine.
 - Powerful dependency injection container.
@@ -26,4 +26,4 @@ Thank you for considering contributing to the PhpThoughts framework! The contrib
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](LICENSE.md).
+The PhpThoughts framework is open-sourced software licensed under the [MIT license](LICENSE.md).
