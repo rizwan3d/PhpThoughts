@@ -1,5 +1,5 @@
 {
-  "name": "GrowBit-Tech/PhpThoughts",
+  "name": "grow-bit-tech/php-thoughts",
   "description": "PHP Framework for Large Projects.",
   "type": "library",
   "require": {
