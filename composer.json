@@ -2,6 +2,21 @@
   "name": "grow-bit-tech/php-thoughts",
   "description": "PHP Framework for Large Projects.",
   "type": "library",
+  "keywords": [
+    "framework",
+    "php framework"
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/GrowBit-Tech/PhpThoughts/issues",
+    "source": "https://github.com/GrowBit-Tech/PhpThoughts"
+  },
+  "authors": [
+    {
+      "name": "Muhammad Rizwan",
+      "email": "rizwan@growbit.tech"
+    }
+  ],
   "require": {
     "slim/slim": "4.*",
     "slim/psr7": "^1.5",
