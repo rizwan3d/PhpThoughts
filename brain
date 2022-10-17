@@ -1,0 +1,12 @@
+<?php 
+
+$exeComand = (require __DIR__ . '/Framework/Cli/bootstrap.php');
+
+if(isset($argv[1])){
+    $cmd = substr($argv[1],2);
+    $exeComand->call($cmd,$argv);
+}
+else{
+    echo "Invalid Command";
+}
+

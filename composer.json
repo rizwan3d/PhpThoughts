@@ -9,7 +9,8 @@
     "squidit/slim-attribute-router": "^0.1.2",
     "doctrine/orm": "^2.13",
     "symfony/cache": "^6.1",
-    "doctrine/annotations": "^1.13"
+    "doctrine/annotations": "^1.13",
+    "cboden/ratchet": "^0.4.4"
   },
   "autoload": {
     "psr-4": {
@@ -17,7 +18,8 @@
       "App\\Framework\\Config\\": "Framework\\Config",
       "App\\Framework\\": "Framework\\Action",
       "App\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
-      "App\\Framework\\Middleware\\": "Framework\\Middleware"
+      "App\\Framework\\Middleware\\": "Framework\\Middleware",
+      "App\\Framework\\Cli\\": "Framework\\Cli"
     }
   },
   "config": {

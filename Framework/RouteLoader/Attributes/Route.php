@@ -26,7 +26,7 @@ class Route
         'HEAD',
     ];
 
-    public function __construct(string $pattern, array $methods,$middleware = null, ?string $name = null)
+    public function __construct(string $pattern, array $methods = ['GET'],$middleware = null, ?string $name = null)
     {
         $this->setPattern($pattern);
         $this->setMethods($methods);

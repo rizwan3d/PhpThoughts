@@ -6,6 +6,11 @@ $settings = [
     // when 'dev_mode' is false.
     'cache_dir' => __DIR__ . '/cache/doctrine',
 
+    'socket' => [
+        'host' => 'localhost',
+        'port' => '6001'
+    ],
+
     // The parameters Doctrine needs to connect to your database.
     // These parameters depend on the driver (for instance the 'pdo_sqlite' driver
     // needs a 'path' parameter and doesn't use most of the ones shown in this example).
