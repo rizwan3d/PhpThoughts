@@ -13,7 +13,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 return [
 
     _Global::class => function (ContainerInterface $container) {
-        $data = require __DIR__.'/../Global.php';
+        $data = require __DIR__. DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Global.php';
 
         return new _Global($data);
     },
@@ -38,11 +38,11 @@ return [
             DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings->get('cache_dir')));
 
         $paths = [];
-        foreach (scandir($path = __DIR__.'/../Modules') as $dir) {
+        foreach (scandir($path = __DIR__. DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Modules') as $dir) {
             if ($dir == '.' || $dir == '..') {
                 continue;
             }
-            $paths[] = dirname($path, 3)."\\Modules\\{$dir}\\Domain\\Entities\\";
+            $paths[] = dirname($path, 3) . DIRECTORY_SEPARATOR . 'Modules' . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR .'Domain' . DIRECTORY_SEPARATOR . 'Entities' . DIRECTORY_SEPARATOR;
         }
 
         $config = Setup::createAttributeMetadataConfiguration(

@@ -20,7 +20,7 @@ final class Socket extends Command implements CommandInterface
         $app = new \Ratchet\App($settings['host'], $settings['port']);
 
         $path = __DIR__;
-        $path = dirname($path, 3).'\\Modules\\Socket\\';
+        $path = dirname($path, 3). DIRECTORY_SEPARATOR . 'Modules' . DIRECTORY_SEPARATOR  . 'Socket' . DIRECTORY_SEPARATOR;
         $fileLoader = new FileLoader([$path]);
         if (empty($fileLoader)) {
             return;
