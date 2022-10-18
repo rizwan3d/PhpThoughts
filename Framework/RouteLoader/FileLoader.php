@@ -23,7 +23,7 @@ class FileLoader
     }
 
     /**
-     * getFiles
+     * getFiles.
      *
      * Searches filesystem recursively and returns all found files matching self::$extension
      * as an array of SplFileObjects

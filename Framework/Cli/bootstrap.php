@@ -1,17 +1,17 @@
 <?php
 
-use App\Framework\Cli\Commands\NewAction;
 use App\Framework\Cli\Commands\Socket;
 use App\Framework\Config\_Global;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
-final class ExeCommand {
-
+final class ExeCommand
+{
     private $global;
 
-    public function __construct(){
-        $data = require __DIR__ . '/../../Global.php';
+    public function __construct()
+    {
+        $data = require __DIR__.'/../../Global.php';
         $this->global = new _Global($data);
     }
 
@@ -19,14 +19,14 @@ final class ExeCommand {
         'socket'=> Socket::class,
     ];
 
-    public function call($command,$args)
+    public function call($command, $args)
     {
-        if(isset($this->commands[$command]))
+        if (isset($this->commands[$command])) {
             (new ($this->commands[$command])($this->global))->run($args);
-        else
-            echo "Invalid Command";
+        } else {
+            echo 'Invalid Command';
+        }
     }
-    
 }
 
-return new ExeCommand;
+return new ExeCommand();

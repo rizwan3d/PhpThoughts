@@ -5,7 +5,7 @@ namespace App\Framework\RouteLoader\Attributes;
 use Attribute;
 use InvalidArgumentException;
 
-#[Attribute(Attribute::TARGET_METHOD|Attribute::TARGET_CLASS)]
+#[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_CLASS)]
 class Route
 {
     protected string $pattern;
@@ -26,7 +26,7 @@ class Route
         'HEAD',
     ];
 
-    public function __construct(string $pattern, array $methods = ['GET'],$middleware = null, ?string $name = null)
+    public function __construct(string $pattern, array $methods = ['GET'], $middleware = null, ?string $name = null)
     {
         $this->setPattern($pattern);
         $this->setMethods($methods);

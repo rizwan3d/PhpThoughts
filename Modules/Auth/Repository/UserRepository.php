@@ -2,20 +2,20 @@
 
 namespace App\Auth\Repository;
 
-use App\Auth\Repository\Interface\UserRepositoryInterface;
 use App\Auth\Domain\Entities\User;
+use App\Auth\Repository\Interface\UserRepositoryInterface;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query\Expr\Func;
 
-class UserRepository implements  UserRepositoryInterface {
-
+class UserRepository implements UserRepositoryInterface
+{
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }
 
-    public function persistUser($email) : ?User{
-        $newUser = new User("ok@OK.COM");
+    public function persistUser($email): ?User
+    {
+        $newUser = new User('ok@OK.COM');
 
         $this->em->persist($newUser);
         $this->em->flush();
@@ -23,11 +23,12 @@ class UserRepository implements  UserRepositoryInterface {
         return $newUser;
     }
 
-
-    public function getUsers() : ?array{
+    public function getUsers(): ?array
+    {
         $users = $this->em
             ->getRepository(User::class)
             ->findAll();
+
         return $users;
     }
 }

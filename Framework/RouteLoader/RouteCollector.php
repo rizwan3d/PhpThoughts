@@ -2,14 +2,8 @@
 
 namespace App\Framework\RouteLoader;
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use SplFileInfo;
-use SplFileObject;
-
 class RouteCollector
 {
-
     public static function findClassMethods(array $classFiles): array
     {
         $classMethodsList = [];

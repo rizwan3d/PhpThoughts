@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Auth\Domain\Entities;
+
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -27,5 +28,5 @@ final class User
     {
         $this->email = $email;
         $this->registeredAt = new DateTimeImmutable('now');
-    }  
+    }
 }

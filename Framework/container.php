@@ -1,19 +1,20 @@
 <?php
 
-use Psr\Container\ContainerInterface;
-use Slim\App;
-use Slim\Factory\AppFactory;
 use App\Framework\Config\_Global;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
+use Psr\Container\ContainerInterface;
+use Slim\App;
+use Slim\Factory\AppFactory;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 return [
 
     _Global::class => function (ContainerInterface $container) {
-        $data = require __DIR__ . '/../Global.php';
+        $data = require __DIR__.'/../Global.php';
+
         return new _Global($data);
     },
 
@@ -32,15 +33,16 @@ return [
     EntityManager::class => function (ContainerInterface $container) {
         $settings = $container->get(_Global::class);
 
-
         $cache = $settings->get('dev_mode') ?
             DoctrineProvider::wrap(new ArrayAdapter()) :
             DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings->get('cache_dir')));
 
         $paths = [];
-        foreach (scandir($path = __DIR__ . '/../Modules') as $dir) {
-            if ($dir == "." || $dir == "..") continue;
-            $paths[] = dirname($path, 3) . "\\Modules\\{$dir}\\Domain\\Entities\\";
+        foreach (scandir($path = __DIR__.'/../Modules') as $dir) {
+            if ($dir == '.' || $dir == '..') {
+                continue;
+            }
+            $paths[] = dirname($path, 3)."\\Modules\\{$dir}\\Domain\\Entities\\";
         }
 
         $config = Setup::createAttributeMetadataConfiguration(
@@ -54,10 +56,10 @@ return [
 
         $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
         $classes = $entityManager->getMetadataFactory()->getAllMetadata();
-        try{
+
+        try {
             $schemaTool->createSchema($classes);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             $schemaTool->updateSchema($classes);
         }
 

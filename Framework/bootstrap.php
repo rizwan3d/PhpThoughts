@@ -1,16 +1,15 @@
 <?php
 
+use App\Framework\Config\_Global;
 use DI\ContainerBuilder;
 use Slim\App;
-use App\Framework\Config\_Global;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
+require_once __DIR__.'/../vendor/autoload.php';
 
 $containerBuilder = new ContainerBuilder();
 
 // Add DI container definitions
-$containerBuilder->addDefinitions(__DIR__ . '/container.php');
+$containerBuilder->addDefinitions(__DIR__.'/container.php');
 
 // Create DI container instance
 $container = $containerBuilder->build();
@@ -23,9 +22,9 @@ $global = $container->get(_Global::class);
 // (require __DIR__ . '/database.php')($app);
 
 // Register routes
-(require __DIR__ . '/routes.php')($app);
+(require __DIR__.'/routes.php')($app);
 
 // Register middleware
-(require __DIR__ . '/middleware.php')($app);
+(require __DIR__.'/middleware.php')($app);
 
 return $app;

@@ -2,9 +2,9 @@
 
 namespace App\Socket;
 
-use Ratchet\MessageComponentInterface;
-use \Ratchet\ConnectionInterface;
 use App\Framework\RouteLoader\Attributes\Route;
+use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
 
 class SocketEvent implements MessageComponentInterface
 {
@@ -12,7 +12,7 @@ class SocketEvent implements MessageComponentInterface
 
     public function __construct()
     {
-        $this->clients = new \SplObjectStorage;
+        $this->clients = new \SplObjectStorage();
     }
 
     public function onOpen(ConnectionInterface $conn)
@@ -27,7 +27,7 @@ class SocketEvent implements MessageComponentInterface
     {
         $numRecv = count($this->clients) - 1;
         echo sprintf(
-            'Connection %d sending message "%s" to %d other connection%s' . "\n",
+            'Connection %d sending message "%s" to %d other connection%s'."\n",
             $from->resourceId,
             $msg,
             $numRecv,

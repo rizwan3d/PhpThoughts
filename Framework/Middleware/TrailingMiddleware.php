@@ -23,6 +23,7 @@ class TrailingMiddleware
 
             if ($request->getMethod() == 'GET') {
                 $response = new Response();
+
                 return $response
                     ->withHeader('Location', (string) $uri)
                     ->withStatus(301);
