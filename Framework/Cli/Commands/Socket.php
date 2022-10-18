@@ -2,17 +2,14 @@
 
 namespace App\Framework\Cli\Commands;
 
-use App\Framework\Cli\Interface\CommandInterface;
 use App\Framework\Cli\Command;
-use App\Framework\Config\_Global;
+use App\Framework\Cli\Interface\CommandInterface;
 use App\Framework\RouteLoader\FileLoader;
 use App\Framework\RouteLoader\RouteCollector;
 
 final class Socket extends Command implements CommandInterface
 {
-
-
-    public function validate() : CommandInterface
+    public function validate(): CommandInterface
     {
         return $this;
     }

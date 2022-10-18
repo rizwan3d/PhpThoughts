@@ -16,7 +16,6 @@ class Command
         $this->parseArgs($argv);
     }
 
-
     public function parseArgs()
     {
         $argvParser = new ArgvParser();
