@@ -2,8 +2,8 @@
 
 namespace App\Framework\Cli\Commands;
 
-use App\Framework\Cli\Interface\CommandInterface;
 use App\Framework\Cli\Command;
+use App\Framework\Cli\Interface\CommandInterface;
 
 final class Serve extends Command implements CommandInterface
 {
@@ -15,15 +15,17 @@ final class Serve extends Command implements CommandInterface
     public function run()
     {
         $command = 'php -S ';
-        if (isset($this->argv['host']))
+        if (isset($this->argv['host'])) {
             $command = $command.$this->argv['host'];
-        else
+        } else {
             $command = $command.'localhost';
+        }
 
-        if (isset($this->argv['port']))
+        if (isset($this->argv['port'])) {
             $command = $command.':'.$this->argv['port'];
-        else
+        } else {
             $command = $command.':8080';
+        }
 
         $command = $command.' -t '.dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'public';
         echo 'executing: '.$command.'\n';
