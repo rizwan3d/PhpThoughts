@@ -3,28 +3,21 @@
 namespace App\Framework\Cli\Commands;
 
 use App\Framework\Cli\Interface\CommandInterface;
+use App\Framework\Cli\Command;
 use App\Framework\Config\_Global;
 use App\Framework\RouteLoader\FileLoader;
 use App\Framework\RouteLoader\RouteCollector;
 
-final class Socket implements CommandInterface
+final class Socket extends Command implements CommandInterface
 {
-    private $settings;
 
-    public function __construct(_Global $global)
+
+    public function validate() : CommandInterface
     {
-        $this->settings = $global;
+        return $this;
     }
 
-    public function validateArgs($argv)
-    {
-    }
-
-    public function parseArgs($argv)
-    {
-    }
-
-    public function run($argv)
+    public function run()
     {
         $settings = $this->settings->get('socket');
         $app = new \Ratchet\App($settings['host'], $settings['port']);

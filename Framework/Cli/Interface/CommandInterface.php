@@ -4,9 +4,7 @@ namespace App\Framework\Cli\Interface;
 
 interface CommandInterface
 {
-    public function parseArgs($args);
+    public function validate() : CommandInterface;
 
-    public function validateArgs($args);
-
-    public function run($args);
+    public function run();
 }

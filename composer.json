@@ -28,7 +28,8 @@
     "doctrine/orm": "^2.13",
     "symfony/cache": "^6.1",
     "doctrine/annotations": "^1.13",
-    "cboden/ratchet": "^0.4.4"
+    "cboden/ratchet": "^0.4.4",
+    "samejack/php-argv": "^1.0"
   },
   "autoload": {
     "psr-4": {

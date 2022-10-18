@@ -22,7 +22,7 @@ final class ExeCommand
     public function call($command, $args)
     {
         if (isset($this->commands[$command])) {
-            (new ($this->commands[$command])($this->global))->run($args);
+            (new ($this->commands[$command])($this->global,$args))->validate()->run();
         } else {
             echo 'Invalid Command';
         }
