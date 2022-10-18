@@ -1,8 +1,8 @@
 <?php
 
-use Slim\App;
-use Selective\BasePath\BasePathMiddleware;
 use App\Framework\Middleware\TrailingMiddleware;
+use Selective\BasePath\BasePathMiddleware;
+use Slim\App;
 
 return function (App $app) {
     // Parse json, form data and xml

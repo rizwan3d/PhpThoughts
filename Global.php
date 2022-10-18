@@ -1,14 +1,15 @@
 <?php
+
 $settings = [
     'dev_mode' => true,  // prod
 
     // Path where Doctrine will cache the processed metadata
     // when 'dev_mode' is false.
-    'cache_dir' => __DIR__ . '/cache/doctrine',
+    'cache_dir' => __DIR__.'/cache/doctrine',
 
     'socket' => [
         'host' => 'localhost',
-        'port' => '6001'
+        'port' => '6001',
     ],
 
     // The parameters Doctrine needs to connect to your database.
@@ -17,13 +18,14 @@ $settings = [
     // Refer to the Doctrine documentation to see the full list
     // of valid parameters: https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html
     'db' => [
-        'driver' => 'pdo_mysql',
-        'host' => '127.0.0.1',
-        'port' => 3306,
-        'dbname' => 'noname',
-        'user' => 'root',
+        'driver'   => 'pdo_mysql',
+        'host'     => '127.0.0.1',
+        'port'     => 3306,
+        'dbname'   => 'noname',
+        'user'     => 'root',
         'password' => '',
-        'charset' => 'utf8',
-    ]
+        'charset'  => 'utf8',
+    ],
 ];
+
 return $settings;

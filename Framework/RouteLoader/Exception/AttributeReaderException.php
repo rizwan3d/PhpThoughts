@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Framework\RouteLoader\Exception;
 
 use Exception;

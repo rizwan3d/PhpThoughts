@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Framework\RouteLoader;
 
 use App\Framework\RouteLoader\Attributes\Route;
 
 /**
- * Class ClassMethod
- * @package SquidIT\Slim\Routing
+ * Class ClassMethod.
  */
 class ClassMethod
 {
@@ -20,7 +20,7 @@ class ClassMethod
      *
      * @param string $className
      * @param string $methodName
-     * @param Route $route
+     * @param Route  $route
      */
     public function __construct(string $className, string $methodName, Route $route)
     {
@@ -35,6 +35,7 @@ class ClassMethod
     public function getMethodName(): string
     {
         $methodName = ($this->methodName === 'class') ? '__invoke' : $this->methodName;
+
         return $this->className.':'.$methodName;
     }
 
@@ -46,7 +47,7 @@ class ClassMethod
         return $this->route->getPattern();
     }
 
-     /**
+    /**
      * @return Middleware
      */
     public function getMiddleware()

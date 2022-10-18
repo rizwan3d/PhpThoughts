@@ -2,18 +2,16 @@
 
 namespace App\Framework\RouteLoader;
 
+use App\Framework\RouteLoader\Attributes\Route;
+use App\Framework\RouteLoader\Exception\AttributeReaderException;
+use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
-use ReflectionAttribute;
 use SplFileObject;
-use App\Framework\RouteLoader\Attributes\Route;
-use App\Framework\RouteLoader\Exception\AttributeReaderException;
-
 
 /**
- * Class PhpAttributeReader
- * @package SquidIT\Slim\Routing
+ * Class PhpAttributeReader.
  */
 class AttributeReader
 {
@@ -27,11 +25,11 @@ class AttributeReader
     protected ?string $className = null;
 
     /**
-     * @var array $allowedTypes array containing allowed search type
+     * @var array array containing allowed search type
      */
     protected array $allowedTypes = [
         'namespace',
-        'className'
+        'className',
     ];
 
     public function __construct(SplFileObject $phpFile)
@@ -40,23 +38,23 @@ class AttributeReader
     }
 
     /**
-     * findClassMethodInfo
+     * findClassMethodInfo.
      *
      * get array of ClassMethod containing method name and cleaned docblock
      *
      * @todo investigate if token_get_all($fileContent) would be faster then using regex
      *
-     * @return ClassMethod[]
-     *
      * @throws AttributeReaderException
      * @throws ReflectionException
+     *
+     * @return ClassMethod[]
      */
     public function findClassMethodInfo(): array
     {
         $result = [];
 
         /**
-         * note: namespace will always proceed class, so as soon as we find a Classname, we can terminate loop
+         * note: namespace will always proceed class, so as soon as we find a Classname, we can terminate loop.
          */
         // get class name (including namespace from file (stop at first hit))
         while (!$this->phpFile->eof()) {
@@ -68,7 +66,6 @@ class AttributeReader
             // find class
             $this->search('className', $line);
 
-
             if (empty($this->className)) {
                 // if no class name has been set, read next line
                 continue;
@@ -77,8 +74,9 @@ class AttributeReader
             // We found class, get all public methods from class and fetch docBlock
             $fullClassName = $this->getFqClassName();
             if (class_exists($fullClassName) === false) {
-                $msg = 'Unable to parse file: ' . $this->phpFile->getFilename() .
-                    ', class: ' . $fullClassName . ' not found';
+                $msg = 'Unable to parse file: '.$this->phpFile->getFilename().
+                    ', class: '.$fullClassName.' not found';
+
                 throw new AttributeReaderException($msg);
             }
 
@@ -107,14 +105,16 @@ class AttributeReader
     }
 
     /**
-     * search
+     * search.
      *
      * search for "type" definition given a single line as string
      *
      * @param string $type allowed values namespace|className
      * @param string $line returns true if we found "type" and sets "type" property name
-     * @return bool
+     *
      * @throws AttributeReaderException
+     *
+     * @return bool
      */
     protected function search(string $type, string $line): bool
     {
@@ -144,18 +144,19 @@ class AttributeReader
 
     /**
      * @param string $fullClassName
-     * @return ClassMethod[]
+     *
      * @throws ReflectionException
+     *
+     * @return ClassMethod[]
      */
     protected function findMethodsWithRouteAttribute(string $fullClassName): array
     {
         $result = [];
-        $reflectionClass  = new ReflectionClass($fullClassName);
+        $reflectionClass = new ReflectionClass($fullClassName);
         $classMethods = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
 
         // Find routes for all public methods
         foreach ($classMethods as $method) {
-
             if ($method->name === '__construct') {
                 // it is not possible link a route to the construct method
                 continue;
@@ -166,7 +167,6 @@ class AttributeReader
                 continue;
             }
 
-
             $route = $this->findRoute($method);
 
             if ($route === null) {
@@ -174,7 +174,7 @@ class AttributeReader
                 continue;
             }
 
-            $result[$fullClassName . '::' . $method->name] = new ClassMethod(
+            $result[$fullClassName.'::'.$method->name] = new ClassMethod(
                 $fullClassName,
                 $method->name,
                 $route
@@ -182,7 +182,7 @@ class AttributeReader
         }
 
         /**
-         * Add __invoke route if defined on class object level
+         * Add __invoke route if defined on class object level.
          *
          * If a class has an __invoke method, we can also specify the route on the class object itself.
          *
@@ -190,7 +190,7 @@ class AttributeReader
          * class route attribute exists if we haven't previously registered an __invoke method in above code.
          */
         $invokeMethodName = '__invoke';
-        $invokeMethodNameFq = $fullClassName . '::' . $invokeMethodName;
+        $invokeMethodNameFq = $fullClassName.'::'.$invokeMethodName;
         if (!isset($result[$invokeMethodNameFq]) && $reflectionClass->hasMethod($invokeMethodName)) {
             $route = $this->findRoute($reflectionClass);
 
@@ -199,7 +199,7 @@ class AttributeReader
                     $fullClassName,
                     $invokeMethodName,
                     $route
-                );;
+                );
             }
         }
 
@@ -212,12 +212,13 @@ class AttributeReader
             Route::class,
             ReflectionAttribute::IS_INSTANCEOF
         );
-        
+
         if (empty($attributes)) {
             return null;
         }
 
         $routeAttribute = array_pop($attributes);
+
         return $routeAttribute->newInstance();
     }
 }
