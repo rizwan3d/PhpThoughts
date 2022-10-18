@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Config;
+namespace GrowBitTech\Framework\Config;
 
 class _Global
 {

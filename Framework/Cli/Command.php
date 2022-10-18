@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Framework\Cli;
+namespace GrowBitTech\Framework\Cli;
 
-use App\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\_Global;
 use samejack\PHP\ArgvParser;
 
 class Command

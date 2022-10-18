@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\RouteLoader\Attributes;
+namespace GrowBitTech\Framework\RouteLoader\Attributes;
 
 use Attribute;
 use InvalidArgumentException;

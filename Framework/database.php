@@ -1,6 +1,6 @@
 <?php
 
-use App\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\_Global;
 use Illuminate\Database\Capsule\Manager as DB;
 use Slim\App;
 

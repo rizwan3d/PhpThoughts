@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\RouteLoader;
+namespace GrowBitTech\Framework\RouteLoader;
 
 class RouteCollector
 {

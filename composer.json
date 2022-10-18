@@ -34,11 +34,11 @@
   "autoload": {
     "psr-4": {
       "App\\": "Modules",
-      "App\\Framework\\Config\\": "Framework\\Config",
-      "App\\Framework\\": "Framework\\Action",
-      "App\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
-      "App\\Framework\\Middleware\\": "Framework\\Middleware",
-      "App\\Framework\\Cli\\": "Framework\\Cli"
+      "GrowBitTech\\Framework\\Config\\": "Framework\\Config",
+      "GrowBitTech\\Framework\\": "Framework\\Action",
+      "GrowBitTech\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
+      "GrowBitTech\\Framework\\Middleware\\": "Framework\\Middleware",
+      "GrowBitTech\\Framework\\Cli\\": "Framework\\Cli"
     }
   },
   "config": {

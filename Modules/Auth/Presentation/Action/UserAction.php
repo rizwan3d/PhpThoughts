@@ -4,8 +4,8 @@ namespace App\Auth\Presentation\Action;
 
 use App\Auth\Presentation\Middleware\AuthMiddleware;
 use App\Auth\Services\AuthService;
-use App\Framework\Action;
-use App\Framework\RouteLoader\Attributes\Route;
+use GrowBitTech\Framework\Action;
+use GrowBitTech\Framework\RouteLoader\Attributes\Route;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Framework\Cli\Commands;
+namespace GrowBitTech\Framework\Cli\Commands;
 
-use App\Framework\Cli\Command;
-use App\Framework\Cli\Interface\CommandInterface;
-use App\Framework\RouteLoader\FileLoader;
-use App\Framework\RouteLoader\RouteCollector;
+use GrowBitTech\Framework\Cli\Command;
+use GrowBitTech\Framework\Cli\Interface\CommandInterface;
+use GrowBitTech\Framework\RouteLoader\FileLoader;
+use GrowBitTech\Framework\RouteLoader\RouteCollector;
 
 final class Socket extends Command implements CommandInterface
 {

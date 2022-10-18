@@ -1,6 +1,6 @@
 <?php
 
-use App\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\_Global;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;

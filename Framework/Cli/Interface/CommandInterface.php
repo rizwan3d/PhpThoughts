@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Cli\Interface;
+namespace GrowBitTech\Framework\Cli\Interface;
 
 interface CommandInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\RouteLoader\Exception;
+namespace GrowBitTech\Framework\RouteLoader\Exception;
 
 use Exception;
 

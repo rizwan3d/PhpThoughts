@@ -2,7 +2,7 @@
 
 namespace App\Socket;
 
-use App\Framework\RouteLoader\Attributes\Route;
+use GrowBitTech\Framework\RouteLoader\Attributes\Route;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 

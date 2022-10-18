@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Framework\Cli\Commands;
+namespace GrowBitTech\Framework\Cli\Commands;
 
-use App\Framework\Cli\Command;
-use App\Framework\Cli\Interface\CommandInterface;
+use GrowBitTech\Framework\Cli\Command;
+use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 
 final class Serve extends Command implements CommandInterface
 {

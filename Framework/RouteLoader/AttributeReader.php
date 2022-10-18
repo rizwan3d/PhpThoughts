@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Framework\RouteLoader;
+namespace GrowBitTech\Framework\RouteLoader;
 
-use App\Framework\RouteLoader\Attributes\Route;
-use App\Framework\RouteLoader\Exception\AttributeReaderException;
+use GrowBitTech\Framework\RouteLoader\Attributes\Route;
+use GrowBitTech\Framework\RouteLoader\Exception\AttributeReaderException;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;

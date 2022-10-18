@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework;
+namespace GrowBitTech\Framework;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Rakit\Validation\Validator;

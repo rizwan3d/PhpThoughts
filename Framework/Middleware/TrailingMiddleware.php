@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace GrowBitTech\Framework\Middleware;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Framework\RouteLoader;
+namespace GrowBitTech\Framework\RouteLoader;
 
-use App\Framework\RouteLoader\Attributes\Route;
+use GrowBitTech\Framework\RouteLoader\Attributes\Route;
 
 /**
  * Class ClassMethod.

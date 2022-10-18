@@ -1,8 +1,8 @@
 <?php
 
-use App\Framework\Cli\Commands\Serve;
-use App\Framework\Cli\Commands\Socket;
-use App\Framework\Config\_Global;
+use GrowBitTech\Framework\Cli\Commands\Serve;
+use GrowBitTech\Framework\Cli\Commands\Socket;
+use GrowBitTech\Framework\Config\_Global;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 

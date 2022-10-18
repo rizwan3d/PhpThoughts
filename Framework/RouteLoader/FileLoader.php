@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\RouteLoader;
+namespace GrowBitTech\Framework\RouteLoader;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;

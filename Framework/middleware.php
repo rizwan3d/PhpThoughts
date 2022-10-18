@@ -1,6 +1,6 @@
 <?php
 
-use App\Framework\Middleware\TrailingMiddleware;
+use GrowBitTech\Framework\Middleware\TrailingMiddleware;
 use Selective\BasePath\BasePathMiddleware;
 use Slim\App;
 

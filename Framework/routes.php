@@ -1,7 +1,7 @@
 <?php
 
-use App\Framework\RouteLoader\FileLoader;
-use App\Framework\RouteLoader\RouteCollector;
+use GrowBitTech\Framework\RouteLoader\FileLoader;
+use GrowBitTech\Framework\RouteLoader\RouteCollector;
 use Slim\App;
 
 return function (App $app) {
