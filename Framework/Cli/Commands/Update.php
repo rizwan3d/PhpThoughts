@@ -19,55 +19,57 @@ final class Update extends Command implements CommandInterface
     public function run(): void
     {
         $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Storage'.DIRECTORY_SEPARATOR.'.Update'.DIRECTORY_SEPARATOR;
-        $this->deletePath($path );       
+        $this->deletePath($path);
 
         echo "creating temp folder.\n\r";
         mkdir($path);
 
         $this->fs = new Filesystem(new LocalFilesystemAdapter($path));
 
-
-        $author     = 'GrowBit-Tech';
+        $author = 'GrowBit-Tech';
         $repository = 'PhpThoughts';
-        $branch     = 'master';
+        $branch = 'master';
 
-        $this->clone($author,$repository,$branch,$path);
+        $this->clone($author, $repository, $branch, $path);
 
         echo "\n\rremoving temp folder.";
-        $this->deletePath($path );
+        $this->deletePath($path);
     }
 
-    private function deletePath(String $path): void{
+    private function deletePath(string $path): void
+    {
         if (file_exists($path)) {
             $this->rrmdir($path);
         }
     }
 
-    private function rrmdir($dir) { 
-        if (is_dir($dir)) { 
-          $objects = scandir($dir);
-          foreach ($objects as $object) { 
-            if ($object != "." && $object != "..") { 
-              if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir.DIRECTORY_SEPARATOR.$object))
-                $this->rrmdir($dir. DIRECTORY_SEPARATOR .$object);
-              else
-                unlink($dir. DIRECTORY_SEPARATOR .$object); 
-            } 
-          }
-          rmdir($dir); 
-        } 
-      }
+    private function rrmdir($dir)
+    {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != '.' && $object != '..') {
+                    if (is_dir($dir.DIRECTORY_SEPARATOR.$object) && !is_link($dir.DIRECTORY_SEPARATOR.$object)) {
+                        $this->rrmdir($dir.DIRECTORY_SEPARATOR.$object);
+                    } else {
+                        unlink($dir.DIRECTORY_SEPARATOR.$object);
+                    }
+                }
+            }
+            rmdir($dir);
+        }
+    }
 
     /**
      * Download & unpack zip.
      *
-     * @param String $author Github author
-     * @param String $repo   Github repository
-     * @param String $branch Repository branch
+     * @param string $author Github author
+     * @param string $repo   Github repository
+     * @param string $branch Repository branch
      *
      * @throws Exception ZipArchive failed
      *
-     * @return String $absolute path to directory location.
+     * @return string $absolute path to directory location.
      *
      * @see https://www.php.net/manual/en/function.fopen
      * @see https://stackoverflow.com/a/2174899/19052212
@@ -76,12 +78,12 @@ final class Update extends Command implements CommandInterface
      * @see https://www.php.net/manual/en/zip.constants.php#ziparchive.constants.rdonly
      * @see https://www.php.net/manual/en/ziparchive.extractto.php
      */
-    private function clone(String $author, String $repo, String $branch, String $dir): String
+    private function clone(string $author, string $repo, string $branch, string $dir): string
     {
-        $url = 'https://github.com/' . $author . '/' . $repo . '/archive/refs/heads/' . $branch . '.zip';
+        $url = 'https://github.com/'.$author.'/'.$repo.'/archive/refs/heads/'.$branch.'.zip';
 
-        $relative = $repo . '.zip';//$author . DIRECTORY_SEPARATOR . $repo . '.zip';
-        $absolute = $dir;//. DIRECTORY_SEPARATOR . $author . DIRECTORY_SEPARATOR . $repo;
+        $relative = $repo.'.zip'; //$author . DIRECTORY_SEPARATOR . $repo . '.zip';
+        $absolute = $dir; //. DIRECTORY_SEPARATOR . $author . DIRECTORY_SEPARATOR . $repo;
         echo $absolute;
         $resource = @fopen($url, 'rb');
 
@@ -90,19 +92,23 @@ final class Update extends Command implements CommandInterface
         $this->fs->writeStream($relative, $resource);
 
         // Extracts the zipfile.
-        $zip = new \ZipArchive;
-        $status = $zip->open($absolute . $relative, \ZipArchive::CHECKCONS);
-        if (true === $status) $status = $zip->extractTo(dirname($absolute .DIRECTORY_SEPARATOR . 'ere' ));
+        $zip = new \ZipArchive();
+        $status = $zip->open($absolute.$relative, \ZipArchive::CHECKCONS);
+        if (true === $status) {
+            $status = $zip->extractTo(dirname($absolute.DIRECTORY_SEPARATOR.'ere'));
+        }
         $zip->close();
 
         // $status = false when extractTo() failed.
         // Otherwise $status has one of the error code constants:
         // https://www.php.net/manual/en/ziparchive.open.php
-        if ($status !== true) throw new \Exception('ZipArchive failed', $status);
+        if ($status !== true) {
+            throw new \Exception('ZipArchive failed', $status);
+        }
 
         // Removes the zipfile.
         $this->fs->delete($relative);
-    
+
         return $absolute;
     }
 }
