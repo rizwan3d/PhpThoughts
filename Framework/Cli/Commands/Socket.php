@@ -14,7 +14,7 @@ final class Socket extends Command implements CommandInterface
         return $this;
     }
 
-    public function run()
+    public function run(): void
     {
         $settings = $this->settings->get('socket');
         $app = new \Ratchet\App($settings['host'], $settings['port']);

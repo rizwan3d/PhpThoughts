@@ -12,7 +12,7 @@ final class Serve extends Command implements CommandInterface
         return $this;
     }
 
-    public function run()
+    public function run(): void
     {
         $command = 'php -S ';
         if (isset($this->argv['host'])) {
