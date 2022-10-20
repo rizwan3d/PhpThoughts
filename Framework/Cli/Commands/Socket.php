@@ -19,8 +19,7 @@ final class Socket extends Command implements CommandInterface
         $settings = $this->settings->get('socket');
         $app = new \Ratchet\App($settings['host'], $settings['port']);
 
-        $path = __DIR__;
-        $path = dirname($path, 3).DIRECTORY_SEPARATOR.'Modules'.DIRECTORY_SEPARATOR.'Socket'.DIRECTORY_SEPARATOR;
+        $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Modules'.DIRECTORY_SEPARATOR.'Socket'.DIRECTORY_SEPARATOR;
         $fileLoader = new FileLoader([$path]);
         if (empty($fileLoader)) {
             return;

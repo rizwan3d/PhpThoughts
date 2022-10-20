@@ -29,7 +29,9 @@
     "symfony/cache": "^6.1",
     "doctrine/annotations": "^1.13",
     "cboden/ratchet": "^0.4.4",
-    "samejack/php-argv": "^1.0"
+    "samejack/php-argv": "^1.0",
+    "ext-zip": "*",
+    "league/flysystem": "^3.9"
   },
   "autoload": {
     "psr-4": {

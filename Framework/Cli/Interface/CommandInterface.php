@@ -6,5 +6,5 @@ interface CommandInterface
 {
     public function validate(): CommandInterface;
 
-    public function run();
+    public function run(): void;
 }

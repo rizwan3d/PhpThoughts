@@ -2,6 +2,7 @@
 
 use GrowBitTech\Framework\Cli\Commands\Serve;
 use GrowBitTech\Framework\Cli\Commands\Socket;
+use GrowBitTech\Framework\Cli\Commands\Update;
 use GrowBitTech\Framework\Config\_Global;
 
 require_once __DIR__.'/../../vendor/autoload.php';
@@ -19,6 +20,7 @@ final class ExeCommand
     private $commands = [
         'socket'=> Socket::class,
         'serve' => Serve::class,
+        'update' => Update::class
     ];
 
     public function call($command, $args)
