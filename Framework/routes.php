@@ -3,8 +3,15 @@
 use GrowBitTech\Framework\RouteLoader\FileLoader;
 use GrowBitTech\Framework\RouteLoader\RouteCollector;
 use Slim\App;
+use GrowBitTech\Framework\Swagger\Swagger;
+use GrowBitTech\Framework\Swagger\SwaggerYaml;
 
 return function (App $app) {
+
+    // Swagger Routes
+    $app->get("/swageryaml", SwaggerYaml::class);
+    $app->get("/swager", Swagger::class);
+
     $paths = [];
     foreach (scandir($path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Modules') as $dir) {
         if ($dir == '.' || $dir == '..' || $dir == 'Socket') {
