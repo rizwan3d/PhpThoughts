@@ -3,16 +3,14 @@
 namespace GrowBitTech\Framework\Swagger;
 
 use GrowBitTech\Framework\Action;
-use GrowBitTech\Framework\RouteLoader\Attributes\Route;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use OpenApi\Annotations as OA;
 
 final class Swagger extends Action
 {
     public function __invoke(Request $request, Response $response, $args): Response
     {
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')."://$_SERVER[HTTP_HOST]";
 
         $html = "<!DOCTYPE html>
 <html lang='en'>
