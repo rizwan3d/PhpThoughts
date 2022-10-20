@@ -18,9 +18,9 @@ final class ExeCommand
     }
 
     private $commands = [
-        'socket'=> Socket::class,
-        'serve' => Serve::class,
-        'update' => Update::class
+        'socket' => Socket::class,
+        'serve'  => Serve::class,
+        'update' => Update::class,
     ];
 
     public function call($command, $args)

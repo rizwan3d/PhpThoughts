@@ -6,9 +6,9 @@ use App\Auth\Presentation\Middleware\AuthMiddleware;
 use App\Auth\Services\AuthService;
 use GrowBitTech\Framework\Action;
 use GrowBitTech\Framework\RouteLoader\Attributes\Route;
+use OpenApi\Annotations as OA;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use OpenApi\Annotations as OA;
 
 /**
  * @OA\Post(
