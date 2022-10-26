@@ -41,7 +41,7 @@ final class Update extends Command implements CommandInterface
 
         echo "Removing temp directory.\n\r";
         $this->deletePath($path);
-        exec("composer update --ignore-platform-reqs");
+        exec('composer update --ignore-platform-reqs');
     }
 
     private function deletePath(string $path): void
