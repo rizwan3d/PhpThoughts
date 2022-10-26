@@ -14,7 +14,8 @@
     "samejack/php-argv": "^1.0",
     "ext-zip": "*",
     "league/flysystem": "^3.9",
-    "zircote/swagger-php": "^4.4"
+    "zircote/swagger-php": "^4.4",
+    "symfony/filesystem": "^6.1"
   },
   "autoload": {
     "psr-4": {

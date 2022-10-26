@@ -6,6 +6,7 @@ use GrowBitTech\Framework\Cli\Command;
 use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use Symfony\Component\Filesystem\Filesystem as FS;
 
 final class Update extends Command implements CommandInterface
 {
@@ -21,7 +22,7 @@ final class Update extends Command implements CommandInterface
         $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Storage'.DIRECTORY_SEPARATOR.'.Update'.DIRECTORY_SEPARATOR;
         $this->deletePath($path);
 
-        echo "creating temp folder.\n\r";
+        echo "Creating temp directory.\n\r";
         mkdir($path);
 
         $this->fs = new Filesystem(new LocalFilesystemAdapter($path));
@@ -30,10 +31,17 @@ final class Update extends Command implements CommandInterface
         $repository = 'PhpThoughts';
         $branch = 'master';
 
+        echo "Downloading Started.\n\r";
         $this->clone($author, $repository, $branch, $path);
+        $framworkPath = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Framework';
+        echo "Replacing Files.\n\r";
+        $this->deletePath($framworkPath);
+        $fileSystem = new FS();
+        $fileSystem->mirror($path.'PhpThoughts-main'.DIRECTORY_SEPARATOR.'Framework', $framworkPath);
 
-        echo "\n\rremoving temp folder.";
+        echo "Removing temp directory.\n\r";
         $this->deletePath($path);
+        exec("composer update --ignore-platform-reqs");
     }
 
     private function deletePath(string $path): void
@@ -84,7 +92,6 @@ final class Update extends Command implements CommandInterface
 
         $relative = $repo.'.zip'; //$author . DIRECTORY_SEPARATOR . $repo . '.zip';
         $absolute = $dir; //. DIRECTORY_SEPARATOR . $author . DIRECTORY_SEPARATOR . $repo;
-        echo $absolute;
         $resource = @fopen($url, 'rb');
 
         // Downloads the zipfile to the local filesystem.
