@@ -18,38 +18,33 @@
     }
   ],
   "require": {
-    "slim/slim": "4.*",
-    "slim/psr7": "^1.5",
-    "selective/basepath": "^2.1",
-    "php-di/php-di": "^6.4",
-    "rakit/validation": "^1.4",
-    "firebase/php-jwt": "^6.3",
-    "squidit/slim-attribute-router": "^0.1.2",
-    "doctrine/orm": "^2.13",
-    "symfony/cache": "^6.1",
-    "doctrine/annotations": "^1.13",
-    "cboden/ratchet": "^0.4.4",
-    "samejack/php-argv": "^1.0",
-    "ext-zip": "*",
-    "league/flysystem": "^3.9",
-    "zircote/swagger-php": "^4.4"
+    "wikimedia/composer-merge-plugin": "*@dev"
   },
   "autoload": {
     "psr-4": {
-      "App\\": "Modules",
-      "GrowBitTech\\Framework\\Config\\": "Framework\\Config",
-      "GrowBitTech\\Framework\\": "Framework\\Action",
-      "GrowBitTech\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
-      "GrowBitTech\\Framework\\Middleware\\": "Framework\\Middleware",
-      "GrowBitTech\\Framework\\Cli\\": "Framework\\Cli",
-      "GrowBitTech\\Framework\\Swagger\\": "Framework\\Swagger"
+      "App\\": "Modules"
     }
   },
   "config": {
-    "process-timeout": 0
+    "process-timeout": 0,
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "wikimedia/composer-merge-plugin": true
+    }
   },
-  "scripts": {
-    "start": "php -S localhost:8080 -t public/"
+  "extra": {
+    "merge-plugin": {
+      "include": [
+        "Framework/composer.json"
+      ],
+      "recurse": true,
+      "replace": false,
+      "ignore-duplicates": true,
+      "merge-dev": true,
+      "merge-extra": false,
+      "merge-extra-deep": false,
+      "merge-scripts": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
