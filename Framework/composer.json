@@ -19,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "GrowBitTech\\Framework\\Config\\": "Framework\\Config",
-      "GrowBitTech\\Framework\\": "Framework\\Action",
-      "GrowBitTech\\Framework\\RouteLoader\\": "Framework\\RouteLoader",
-      "GrowBitTech\\Framework\\Middleware\\": "Framework\\Middleware",
-      "GrowBitTech\\Framework\\Cli\\": "Framework\\Cli",
-      "GrowBitTech\\Framework\\Swagger\\": "Framework\\Swagger"
+      "GrowBitTech\\Framework\\Config\\": "Config",
+      "GrowBitTech\\Framework\\": "Action",
+      "GrowBitTech\\Framework\\RouteLoader\\": "RouteLoader",
+      "GrowBitTech\\Framework\\Middleware\\": "Middleware",
+      "GrowBitTech\\Framework\\Cli\\": "Cli",
+      "GrowBitTech\\Framework\\Swagger\\": "Swagger"
     }
   }
 }
