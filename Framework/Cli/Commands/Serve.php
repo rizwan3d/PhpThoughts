@@ -7,10 +7,6 @@ use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 
 final class Serve extends Command implements CommandInterface
 {
-    public function validate(): CommandInterface
-    {
-        return $this;
-    }
 
     public function run(): void
     {

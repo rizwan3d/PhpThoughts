@@ -4,8 +4,9 @@ namespace GrowBitTech\Framework\Cli;
 
 use GrowBitTech\Framework\Config\_Global;
 use samejack\PHP\ArgvParser;
+use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 
-class Command
+class Command  implements CommandInterface
 {
     protected $settings;
     protected $argv;
@@ -20,5 +21,15 @@ class Command
     {
         $argvParser = new ArgvParser();
         $this->argv = $argvParser->parseConfigs();
+    }
+
+    public function validate(): CommandInterface
+    {
+        return $this;
+    }
+
+    public function run(): void
+    {
+        return;
     }
 }

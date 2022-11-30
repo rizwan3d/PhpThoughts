@@ -12,11 +12,6 @@ final class Update extends Command implements CommandInterface
 {
     private $fs;
 
-    public function validate(): CommandInterface
-    {
-        return $this;
-    }
-
     public function run(): void
     {
         $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Storage'.DIRECTORY_SEPARATOR.'.Update'.DIRECTORY_SEPARATOR;

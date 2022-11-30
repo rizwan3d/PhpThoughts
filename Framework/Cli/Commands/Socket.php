@@ -9,11 +9,6 @@ use GrowBitTech\Framework\RouteLoader\RouteCollector;
 
 final class Socket extends Command implements CommandInterface
 {
-    public function validate(): CommandInterface
-    {
-        return $this;
-    }
-
     public function run(): void
     {
         $settings = $this->settings->get('socket');
