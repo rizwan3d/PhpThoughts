@@ -18,7 +18,7 @@ class Socket implements MessageComponentInterface
         $this->id = uniqid('GrowBit_');    
     }
     
-    public public function init()
+    public function init()
     {
         $this->clients = new \SplObjectStorage();
         if($this->redis->isRadis){
