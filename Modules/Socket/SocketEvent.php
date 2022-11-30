@@ -21,31 +21,29 @@ class SocketEvent extends Socket
         echo "New connection! ({$conn->resourceId})\n";
     }
 
+
+    public function messageFromRadis($msg){
+
+    }
+
     #[Route('/chat')]
-    public function newMessage($msg, ConnectionInterface $from)
+    public function messageFromSocket($msg, ConnectionInterface $from)
     {
+        //if client exist send message otherise publish it
+        // $this->publish($msg);
+        
+        $numRecv = count($this->clients) - 1;
+        echo sprintf(
+            'Connection %d sending message "%s" to %d other connection%s' . "\n",
+            $from->resourceId,
+            $msg,
+            $numRecv,
+            $numRecv == 1 ? '' : 's'
+        );
 
-        // if msg form redis msg is [$msg => $msg, 'fromRadis' => true]
-        if (isset($msg['fromRadis']) && $msg['fromRadis']) {
-            // consume msg here
-        } else {
-
-            //if client exist send message otherise publish it
-            // $this->publish($msg);
-            
-            $numRecv = count($this->clients) - 1;
-            echo sprintf(
-                'Connection %d sending message "%s" to %d other connection%s' . "\n",
-                $from->resourceId,
-                $msg,
-                $numRecv,
-                $numRecv == 1 ? '' : 's'
-            );
-
-            foreach ($this->clients as $client) {
-                if ($from != $client) {
-                    $client->send($msg);
-                }
+        foreach ($this->clients as $client) {
+            if ($from != $client) {
+                $client->send($msg);
             }
         }
     }

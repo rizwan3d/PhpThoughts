@@ -33,24 +33,28 @@ class Socket implements MessageComponentInterface
 
     public function onMessage(ConnectionInterface $from, $msg)
     {
-        $this->newMessage( $msg,$from)
+        $this->messageFromSocket( $msg,$from);
     }
 
-    public function newMessage($msg,ConnectionInterface $from){
+    public function messageFromSocket($msg,ConnectionInterface $from){
+
+    }
+
+    public function messageFromRadis($msg){
 
     }
 
     public function publish($msg){
-        $this->redis->publish([$msg => $msg, 'fromRadis' => true, 'id' => $this->id]);
+        $this->redis->publish([$msg => $msg, 'id' => $this->id]);
     }
 
     public function subscribe(){
         $this->redis->subscribe($this->routeMsg);
     }
-    public public function routeMsg($msg)
+    public function routeMsg($msg)
     {
-        if($msg[id] != $this->id)
-            $this->newMessage($msg,null);
+        if($msg['id'] != $this->id)
+            $this->messageFromRadis($msg,null);
     }
 
     public function onClose(ConnectionInterface $conn)
