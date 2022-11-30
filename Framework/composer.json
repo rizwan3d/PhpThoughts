@@ -15,7 +15,8 @@
     "ext-zip": "*",
     "league/flysystem": "^3.9",
     "zircote/swagger-php": "^4.4",
-    "symfony/filesystem": "^6.1"
+    "symfony/filesystem": "^6.1",
+    "superbalist/php-pubsub-redis": "2.0.0"
   },
   "autoload": {
     "psr-4": {

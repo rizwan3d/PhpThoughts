@@ -10,6 +10,15 @@ $settings = [
     'socket' => [
         'host' => 'localhost',
         'port' => '6001',
+        'isRadis' => true,
+        'radisChannel' => 'socket',
+        'redis' => [
+            'scheme' => 'tcp',
+            'host' => '127.0.0.1',
+            'port' => 6379,
+            'database' => 0,
+            'read_write_timeout' => 0
+        ]
     ],
 
     // The parameters Doctrine needs to connect to your database.
