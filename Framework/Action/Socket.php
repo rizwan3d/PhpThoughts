@@ -1,8 +1,7 @@
 <?php
+
 namespace GrowBitTech\Framework;
 
-use BadFunctionCallException;
-use GrowBitTech\Framework\Config\_Global;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 
@@ -14,14 +13,14 @@ class Socket implements MessageComponentInterface
 
     public function __construct(RedisPubSubAdapter $redis)
     {
-        $this->redis = $redis;   
-        $this->id = uniqid('GrowBit_');    
+        $this->redis = $redis;
+        $this->id = uniqid('GrowBit_');
     }
-    
+
     public function init()
     {
         $this->clients = new \SplObjectStorage();
-        if($this->redis->isRadis){
+        if ($this->redis->isRadis) {
             $this->subscribe();
         }
     }
@@ -33,28 +32,32 @@ class Socket implements MessageComponentInterface
 
     public function onMessage(ConnectionInterface $from, $msg)
     {
-        $this->messageFromSocket( $msg,$from);
+        $this->messageFromSocket($msg, $from);
     }
 
-    public function messageFromSocket($msg,ConnectionInterface $from){
-
+    public function messageFromSocket($msg, ConnectionInterface $from)
+    {
     }
 
-    public function messageFromRadis($msg){
-
+    public function messageFromRadis($msg)
+    {
     }
 
-    public function publish($msg){
+    public function publish($msg)
+    {
         $this->redis->publish([$msg => $msg, 'id' => $this->id]);
     }
 
-    public function subscribe(){
+    public function subscribe()
+    {
         $this->redis->subscribe($this->routeMsg);
     }
+
     public function routeMsg($msg)
     {
-        if($msg['id'] != $this->id)
-            $this->messageFromRadis($msg,null);
+        if ($msg['id'] != $this->id) {
+            $this->messageFromRadis($msg, null);
+        }
     }
 
     public function onClose(ConnectionInterface $conn)
@@ -64,6 +67,5 @@ class Socket implements MessageComponentInterface
 
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
-        
     }
 }

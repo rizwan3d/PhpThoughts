@@ -7,7 +7,6 @@ use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 
 final class Serve extends Command implements CommandInterface
 {
-
     public function run(): void
     {
         $command = 'php -S ';

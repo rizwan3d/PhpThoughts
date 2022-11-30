@@ -2,11 +2,11 @@
 
 namespace GrowBitTech\Framework\Cli;
 
+use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 use GrowBitTech\Framework\Config\_Global;
 use samejack\PHP\ArgvParser;
-use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 
-class Command  implements CommandInterface
+class Command implements CommandInterface
 {
     protected $settings;
     protected $argv;
@@ -30,6 +30,6 @@ class Command  implements CommandInterface
 
     public function run(): void
     {
-        return;
+
     }
 }

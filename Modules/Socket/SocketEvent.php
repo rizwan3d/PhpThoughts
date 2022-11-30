@@ -21,9 +21,8 @@ class SocketEvent extends Socket
         echo "New connection! ({$conn->resourceId})\n";
     }
 
-
-    public function messageFromRadis($msg){
-
+    public function messageFromRadis($msg)
+    {
     }
 
     #[Route('/chat')]
@@ -31,10 +30,10 @@ class SocketEvent extends Socket
     {
         //if client exist send message otherise publish it
         // $this->publish($msg);
-        
+
         $numRecv = count($this->clients) - 1;
         echo sprintf(
-            'Connection %d sending message "%s" to %d other connection%s' . "\n",
+            'Connection %d sending message "%s" to %d other connection%s'."\n",
             $from->resourceId,
             $msg,
             $numRecv,
@@ -57,6 +56,6 @@ class SocketEvent extends Socket
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
         echo "An error has occurred: {$e->getMessage()}\n";
-        parent::onError($conn,$e);
+        parent::onError($conn, $e);
     }
 }
