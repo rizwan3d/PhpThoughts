@@ -39,7 +39,7 @@ return [
 
         $paths = [];
         foreach (scandir($path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Modules') as $dir) {
-            if ($dir == '.' || $dir == '..') {
+            if ($dir == '.' || $dir == '..' || $dir == 'Socket') {
                 continue;
             }
             $paths[] = dirname($path, 3).DIRECTORY_SEPARATOR.'Modules'.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.'Domain'.DIRECTORY_SEPARATOR.'Entities'.DIRECTORY_SEPARATOR;
