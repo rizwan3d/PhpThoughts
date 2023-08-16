@@ -29,6 +29,14 @@ class ClassMethod
         $this->route = $route;
     }
 
+     /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        return $this->className;
+    }
+
     /**
      * @return string
      */

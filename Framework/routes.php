@@ -64,10 +64,18 @@ return function (App $app) {
         if ($rote && $requestMiddleware) {
             if (is_array($requestMiddleware) && count($requestMiddleware) > 0) {
                 foreach ($requestMiddleware as $middleware) {
-                    $rote->add($middleware);
+                    if(str_ends_with($middleware,'ValidationMiddleware')){
+                        $rote->add(new $middleware($classMethod->getClassName()::$validations));
+                    }
+                    else
+                        $rote->add($middleware);
                 }
             } else {
-                $rote->add($requestMiddleware);
+                if(str_ends_with($requestMiddleware,'ValidationMiddleware')){
+                    $rote->add(new $requestMiddleware($classMethod->getClassName()::$validations));
+                }
+                else
+                    $rote->add($requestMiddleware);
             }
         }
     }
