@@ -22,7 +22,7 @@ final class Serve extends Command implements CommandInterface
             $command = $command.':8080';
         }
 
-        $command = $command.' -t '.dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'public';
+        $command = $command.' -t "'.dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'public"';
         echo 'executing: '.$command.'\n';
         exec($command);
     }
