@@ -9,7 +9,6 @@ use Slim\Psr7\Response;
 
 class ValidationMiddleware
 {
-
     private $rules = [];
     private $validator;
 
@@ -21,15 +20,16 @@ class ValidationMiddleware
 
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
-        $data = (array)$request->getParsedBody();
+        $data = (array) $request->getParsedBody();
         $validation = $this->validator->validate($data, $this->rules);
 
         if ($validation->fails()) {
             $error = [
-                'error' => [$validation->errors()->firstOfAll()]
+                'error' => [$validation->errors()->firstOfAll()],
             ];
             $response = new Response();
             $response->getBody()->write(json_encode($error, JSON_UNESCAPED_UNICODE));
+
             return $response
             ->withHeader('content-type', 'application/json')
             ->withStatus(403);

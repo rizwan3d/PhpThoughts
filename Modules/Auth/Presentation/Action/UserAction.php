@@ -17,10 +17,12 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  *     summary="Create user",
  *     description="This can only be done by the logged in user.",
  *     operationId="createUser",
+ *
  *     @OA\Response(
  *         response="default",
  *         description="successful operation"
  *     ),
+ *
  *     @OA\RequestBody(
  *         description="Create user object",
  *         required=false,
