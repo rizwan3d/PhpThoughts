@@ -9,7 +9,7 @@ class Action
     public function __construct()
     {
     }
-       
+
     protected function success(Response $response, $data)
     {
         return $this->responce($response, $data, 200);

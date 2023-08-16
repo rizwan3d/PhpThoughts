@@ -30,6 +30,5 @@ class Command implements CommandInterface
 
     public function run(): void
     {
-
     }
 }
