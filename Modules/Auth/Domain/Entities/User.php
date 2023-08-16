@@ -21,6 +21,11 @@ final class User
     #[Column(type: 'string', nullable: true)]
     public string $name;
 
+    #[Column(type: 'string', nullable: true)]
+    public string $password;
+
+    public string $token;
+
     #[Column(name: 'registered_at', type: 'datetimetz_immutable', nullable: false)]
     public DateTimeImmutable $registeredAt;
 

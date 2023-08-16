@@ -5,13 +5,45 @@ namespace App\Auth\Services;
 use App\Auth\Domain\Entities\User;
 use App\Auth\Repository\UserRepository;
 use Firebase\JWT\JWT;
+use GrowBitTech\Framework\Config\_Global;
 
 class AuthService
 {
-    public function __construct(UserRepository $userRepository)
+    private UserRepository $userRepository;
+    private _Global $globel;
+    private User $user;
+
+    public function __construct(UserRepository $userRepository,_Global $globel)
     {
         $this->userRepository = $userRepository;
+        $this->globel = $globel;
     }
+    public function findUser($email) : ?User{
+        return $this->userRepository->findUser([ 'email' => $email]);
+    }
+
+    public function loginUser($email,$password) : User | array{
+        $user = $this->findUser($email);
+        if ($user && $this->verifyPassword($user,$password)){
+             $result = $this->getJWT($user);
+             $user->token = $result;
+             $this->setUser($user);
+             return $user;
+        }
+        return [ 'error' => [ 'user name or password is invalid' ]];
+    }
+
+    public function getJWT($user){
+		$token = [
+			"iat" => time(),
+			"exp" => time() + 2592000,
+			"data" => [
+                "time" => time(),
+				"user_id" => $user->id
+			]
+		];
+		return JWT::encode($token, $this->globel->get('authkey'), 'HS256');
+	}
 
     public function getAllUser(): ?array
     {
@@ -19,41 +51,20 @@ class AuthService
 
         return $users;
     }
-    // private $user;
-    // public $secret = 'NOTHINGISIMPPOSBILE630';
 
-    // public function setAuth($data){
-    // 	try{
-    // 		$user = User::findOrFail($data->data->user_id);
-    // 		Auth::$user = $user;
-    // 		return true;
-    // 	}catch(\Exception $e){
-    // 		return false;
-    // 	}
-    // }
+    public function setUser(User $user){
+        $this->user = $user;
+    }
 
-    // public function login($user){
-    //     Auth::$user = $user;
-    // 	$token = [
-    // 		"iat" => time(),
-    // 		"exp" => time() + 2592000,
-    // 		"data" => [
-    // 			"user_id" => $user->id
-    // 		]
-    // 	];
+    public function getUser(){
+    	return $this->user;
+    }
 
-    // 	return JWT::encode($token, Auth::$secret, 'HS256');
-    // }
+    public function hash($password){
+     	return password_hash($password, PASSWORD_DEFAULT);
+    }
 
-    // public function user(){
-    // 	return Auth::$user;
-    // }
-
-    // public function hash($password){
-    // 	return password_hash($password, PASSWORD_DEFAULT);
-    // }
-
-    // public function verifyPassword($user,$password){
-    // 	return password_verify($password, $user->password);
-    // }
+    public function verifyPassword($user,$password){
+    	return password_verify($password, $user->password);
+    }
 }

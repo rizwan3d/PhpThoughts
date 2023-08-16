@@ -13,6 +13,17 @@ class UserRepository implements UserRepositoryInterface
         $this->em = $em;
     }
 
+    public function findUser($where) : ?User{
+        $data = $this->em
+        ->getRepository(User::class)
+        ->findBy($where);
+
+        if(count($data) > 0)
+        return $data[0];
+
+        return null;
+    }
+
     public function persistUser($email): ?User
     {
         $newUser = new User('ok@OK.COM');
@@ -25,6 +36,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getUsers(): ?array
     {
+        $this->persistUser("");
         $users = $this->em
             ->getRepository(User::class)
             ->findAll();

@@ -2,6 +2,7 @@
 
 $settings = [
     'dev_mode' => true,  // prod
+    'authkey' => 'ASSIGNMENTKEY',
 
     // Path where Doctrine will cache the processed metadata
     // when 'dev_mode' is false.
