@@ -29,7 +29,7 @@ Directory structure: [https://medium.com/@rizwan3d/my-next-project-directory-str
 
 ### CLI
 #### Run project
-> php ./brain serve --host localhost --port 8080
+> php ./brain --serve --host localhost --port 8080
 
 > **Default** host = localhost and port = 8080
 #### Run socket
