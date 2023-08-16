@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * @OA\Post(
+ * @OA\Get(
  *     path="/user",
  *     tags={"user"},
  *     summary="Create user",
@@ -23,7 +23,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  *     ),
  *     @OA\RequestBody(
  *         description="Create user object",
- *         required=true,
+ *         required=false,
  *     )
  * )
  */
