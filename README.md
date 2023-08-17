@@ -12,11 +12,19 @@
 PhpThoughts is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. PhpThoughts attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
 - Simple, fast attribute based routing engine.
-- Powerful dependency injection container.
+- Powerful dependency injection container (PSR-11).
 - Doctrine database ORM.
 - Socket Server and Client.
 - Powerful Cli.
 - Based on onion architecture.
+- HTTP message interfaces (PSR-7)
+- HTTP Server Request Handlers, Middleware (PSR-15)
+- Autoloader (PSR-4)
+- Logger (PSR-3)
+- Code styles (PSR-12)
+- Single action controllers
+- Input validation
+- Console Commands
 
 PhpThoughts is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation gives you a complete toolset required to build any application with which you are tasked.
 
@@ -34,6 +42,17 @@ Directory structure: [https://medium.com/@rizwan3d/my-next-project-directory-str
 > **Default** host = localhost and port = 8080
 #### Run socket
 > php ./brain --socket
+
+#### Update Framework
+> php ./brain --update
+
+#### Create Database Schema
+> php ./brain --db --create
+
+#### Update Framework
+> php ./brain --db --update
+
+
 ## Contributing
 
 Thank you for considering contributing to the PhpThoughts framework! The contribution guide can be found [here](LICENSE.md).
