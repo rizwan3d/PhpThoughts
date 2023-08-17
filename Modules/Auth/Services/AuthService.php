@@ -36,7 +36,8 @@ class AuthService implements AuthServiceInterface
              $this->setUser($user);
              return $user;
         }
-        return [ 'error' => [ 'user name or password is invalid' ]];
+
+        return ['error' => ['user name or password is invalid']];
     }
 
     public function logout($token) : bool{
@@ -85,7 +86,8 @@ class AuthService implements AuthServiceInterface
         return $users;
     }
 
-    public function setUser(User $user){
+    public function setUser(User $user)
+    {
         $this->user = $user;
     }
 

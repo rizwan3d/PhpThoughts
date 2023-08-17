@@ -7,7 +7,6 @@ use GrowBitTech\Framework\Swagger\SwaggerYaml;
 use Slim\App;
 
 return function (App $app) {
-
     // Swagger Routes
     $app->get('/swageryaml', SwaggerYaml::class);
     $app->get('/swager', Swagger::class);
@@ -64,18 +63,18 @@ return function (App $app) {
         if ($rote && $requestMiddleware) {
             if (is_array($requestMiddleware) && count($requestMiddleware) > 0) {
                 foreach ($requestMiddleware as $middleware) {
-                    if(str_ends_with($middleware,'ValidationMiddleware')){
+                    if (str_ends_with($middleware, 'ValidationMiddleware')) {
                         $rote->add(new $middleware($classMethod->getClassName()::$validations));
-                    }
-                    else
+                    } else {
                         $rote->add($middleware);
+                    }
                 }
             } else {
-                if(str_ends_with($requestMiddleware,'ValidationMiddleware')){
+                if (str_ends_with($requestMiddleware, 'ValidationMiddleware')) {
                     $rote->add(new $requestMiddleware($classMethod->getClassName()::$validations));
-                }
-                else
+                } else {
                     $rote->add($requestMiddleware);
+                }
             }
         }
     }
