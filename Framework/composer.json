@@ -16,12 +16,15 @@
     "league/flysystem": "^3.9",
     "zircote/swagger-php": "^4.4",
     "symfony/filesystem": "^6.1",
-    "superbalist/php-pubsub-redis": "2.0.0"
+    "superbalist/php-pubsub-redis": "2.0.0",
+    "symfony/uid": "^6.3",
+    "monolog/monolog": "^3.4"
   },
   "autoload": {
     "psr-4": {
       "GrowBitTech\\Framework\\Config\\": "Config",
       "GrowBitTech\\Framework\\": "Action",
+      "GrowBitTech\\Framework\\Factory\\": "Factory",
       "GrowBitTech\\Framework\\RouteLoader\\": "RouteLoader",
       "GrowBitTech\\Framework\\Middleware\\": "Middleware",
       "GrowBitTech\\Framework\\Cli\\": "Cli",
