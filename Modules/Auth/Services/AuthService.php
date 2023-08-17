@@ -4,6 +4,7 @@ namespace App\Auth\Services;
 
 use App\Auth\Domain\Entities\User;
 use App\Auth\Repository\UserRepository;
+use App\Auth\Repository\LogoutRepository;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -12,12 +13,14 @@ use GrowBitTech\Framework\Config\_Global;
 class AuthService
 {
     private UserRepository $userRepository;
+    private LogoutRepository $logoutRepository;
     private _Global $globel;
     private User $user;
 
-    public function __construct(UserRepository $userRepository,_Global $globel)
+    public function __construct(UserRepository $userRepository,LogoutRepository $logoutRepository,_Global $globel)
     {
         $this->userRepository = $userRepository;
+        $this->logoutRepository = $logoutRepository;
         $this->globel = $globel;
     }
     public function findUser($where) : ?User{
@@ -35,8 +38,14 @@ class AuthService
         return [ 'error' => [ 'user name or password is invalid' ]];
     }
 
+    public function logout($token) : bool{
+        return $this->logoutRepository->logout($token);
+    }
+
     public function verifyJWT($token) : User | array {
         try {
+            if($this->logoutRepository->isBlacklisted($token))
+                return ['error' => 'Invalid Token.'];
             $decoded = JWT::decode($token, new Key($this->globel->get('authkey'), 'HS256'));
             
             $now = new DateTimeImmutable();
