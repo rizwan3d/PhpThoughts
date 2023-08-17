@@ -14,7 +14,7 @@ class Command implements CommandInterface
     public function __construct(_Global $global, $argv)
     {
         $this->settings = $global;
-        $this->parseArgs($argv);
+        $this->parseArgs();
     }
 
     public function parseArgs()

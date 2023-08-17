@@ -1,5 +1,6 @@
 <?php
 
+use GrowBitTech\Framework\Cli\Commands\DbSchemaUpdate;
 use GrowBitTech\Framework\Cli\Commands\Serve;
 use GrowBitTech\Framework\Cli\Commands\Socket;
 use GrowBitTech\Framework\Cli\Commands\Update;
@@ -21,6 +22,7 @@ final class ExeCommand
         'socket' => Socket::class,
         'serve'  => Serve::class,
         'update' => Update::class,
+        'db' => DbSchemaUpdate::class,
     ];
 
     public function call($command, $args)

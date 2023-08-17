@@ -43,6 +43,7 @@ $settings = [
         'password' => '',
         'charset'  => 'utf8',
     ],
+    'AutoDBSchemaUpdate' => true,
 ];
 
 return $settings;

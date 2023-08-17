@@ -54,13 +54,15 @@ return [
 
         $entityManager = EntityManager::create($settings->get('db'), $config);
 
-        $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
-        $classes = $entityManager->getMetadataFactory()->getAllMetadata();
+        if($settings->get('AutoDBSchemaUpdate')){
+            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
+            $classes = $entityManager->getMetadataFactory()->getAllMetadata();
 
-        try {
-            $schemaTool->createSchema($classes);
-        } catch (\Exception $e) {
-            $schemaTool->updateSchema($classes);
+            try {
+                $schemaTool->createSchema($classes);
+            } catch (\Exception $e) {
+                $schemaTool->updateSchema($classes);
+            }
         }
 
         return $entityManager;
