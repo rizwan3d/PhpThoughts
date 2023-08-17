@@ -17,7 +17,7 @@ final class Update extends Command implements CommandInterface
         $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Storage'.DIRECTORY_SEPARATOR.'.Update'.DIRECTORY_SEPARATOR;
         $this->deletePath($path);
 
-        echo "Creating temp directory.\n\r";
+        echo "Creating temp directory." . PHP_EOL;
         mkdir($path);
 
         $this->fs = new Filesystem(new LocalFilesystemAdapter($path));
@@ -26,18 +26,18 @@ final class Update extends Command implements CommandInterface
         $repository = 'PhpThoughts';
         $branch = 'master';
 
-        echo "Downloading Started.\n\r";
+        echo "Downloading Started." . PHP_EOL;
         $this->clone($author, $repository, $branch, $path);
         $framworkPath = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Framework';
-        echo "Replacing Files.\n\r";
+        echo "Replacing Files." . PHP_EOL;
         $this->deletePath($framworkPath);
         $fileSystem = new FS();
         $fileSystem->mirror($path.'PhpThoughts-main'.DIRECTORY_SEPARATOR.'Framework', $framworkPath);
 
-        echo "Removing temp directory.\n\r";
+        echo "Removing temp directory." . PHP_EOL;
         $this->deletePath($path);
         exec('composer update --ignore-platform-reqs');
-        echo "Kindly verify you Global.php with online one.\n\r";
+        echo "Kindly verify you Global.php with online one." . PHP_EOL;
     }
 
     private function deletePath(string $path): void
