@@ -5,12 +5,13 @@ namespace App\Auth\Services;
 use App\Auth\Domain\Entities\User;
 use App\Auth\Repository\UserRepository;
 use App\Auth\Repository\LogoutRepository;
+use App\Auth\Services\Interface\AuthServiceInterface;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GrowBitTech\Framework\Config\_Global;
 
-class AuthService
+class AuthService implements AuthServiceInterface
 {
     private UserRepository $userRepository;
     private LogoutRepository $logoutRepository;
@@ -65,7 +66,7 @@ class AuthService
         }
     }
 
-    public function getJWT($user){
+    public function getJWT($user): string{
 		$token = [
 			"iat" => time(),
 			"exp" => time() + 2592000,
@@ -88,15 +89,15 @@ class AuthService
         $this->user = $user;
     }
 
-    public function getUser(){
+    public function getUser() : User{
     	return $this->user;
     }
 
-    public function hash($password){
+    public function hash($password): string{
      	return password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function verifyPassword($user,$password){
+    public function verifyPassword($user,$password): bool{
     	return password_verify($password, $user->password);
     }
 }
