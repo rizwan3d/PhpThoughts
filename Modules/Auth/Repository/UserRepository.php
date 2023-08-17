@@ -36,7 +36,6 @@ class UserRepository implements UserRepositoryInterface
 
     public function getUsers(): ?array
     {
-        $this->persistUser("");
         $users = $this->em
             ->getRepository(User::class)
             ->findAll();
