@@ -1,5 +1,6 @@
 <?php
 
+use GrowBitTech\Framework\Config\_Global;
 use GrowBitTech\Framework\RouteLoader\FileLoader;
 use GrowBitTech\Framework\RouteLoader\RouteCollector;
 use GrowBitTech\Framework\Swagger\Swagger;
@@ -7,9 +8,12 @@ use GrowBitTech\Framework\Swagger\SwaggerYaml;
 use Slim\App;
 
 return function (App $app) {
-    // Swagger Routes
-    $app->get('/swageryaml', SwaggerYaml::class);
-    $app->get('/swager', Swagger::class);
+
+    if($app->getContainer()->get(_Global::class)->get('swager')){
+        // Swagger Routes
+        $app->get('/swageryaml', SwaggerYaml::class);
+        $app->get('/swager', Swagger::class);
+    }
 
     $paths = [];
     foreach (scandir($path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Modules') as $dir) {

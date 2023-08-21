@@ -3,6 +3,7 @@
 $settings = [
     'dev_mode' => true,  // prod
     'authkey'  => 'ASSIGNMENTKEY',
+    'swager' => true,
 
     'logger' => [
         // Log file location
@@ -11,7 +12,7 @@ $settings = [
         'level' => \Monolog\Level::Info,
     ],
 
-    // Path where Doctrine will cache the processed metadata
+    // Path where Doctrine/DI will cache the processed metadata
     // when 'dev_mode' is false.
     'cache_dir' => __DIR__.'\Cache',
 
