@@ -1,8 +1,9 @@
 <?php
 
 namespace GrowBitTech\Framework\Config;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 
-class _Global
+class _Global implements GlobalInterface
 {
     private $settings;
 

@@ -2,7 +2,9 @@
 
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use GrowBitTech\Framework\Config\_Global;
 use Psr\Container\ContainerInterface;
 use Slim\App;
@@ -10,8 +12,7 @@ use Slim\Factory\AppFactory;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-return [
-
+$configStatic = [
     _Global::class => function (ContainerInterface $container) {
         $data = require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Global.php';
 
@@ -31,7 +32,7 @@ return [
     },
 
     EntityManager::class => function (ContainerInterface $container) {
-        $settings = $container->get(_Global::class);
+        $settings = $container->get(GlobalInterface::class);
 
         $cache = $settings->get('dev_mode') ?
             DoctrineProvider::wrap(new ArrayAdapter()) :
@@ -67,4 +68,10 @@ return [
 
         return $entityManager;
     },
+    EntityManagerInterface::class => DI\get(EntityManager::class),
+    GlobalInterface::class => DI\get(_Global::class),
 ];
+
+
+$configDynamic = require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'di.php';
+return array_merge($configDynamic,$configStatic);

@@ -7,7 +7,6 @@ use GrowBitTech\Framework\Cli\Interface\CommandInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
-use GrowBitTech\Framework\Config\_Global;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;

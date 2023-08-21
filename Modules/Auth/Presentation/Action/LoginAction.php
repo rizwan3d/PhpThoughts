@@ -3,6 +3,7 @@
 namespace App\Auth\Presentation\Action;
 
 use App\Auth\Services\AuthService;
+use App\Auth\Services\Interface\AuthServiceInterface;
 use GrowBitTech\Framework\Action;
 use GrowBitTech\Framework\Factory\LoggerFactory;
 use GrowBitTech\Framework\Middleware\ValidationMiddleware;
@@ -67,11 +68,11 @@ final class LoginAction extends Action
         'password' => 'required',
     ];
 
-    private AuthService $authService;
+    private AuthServiceInterface $authService;
 
     private LoggerInterface $logger;
 
-    public function __construct(AuthService $authService,LoggerFactory $loggerFactory)
+    public function __construct(AuthServiceInterface $authService,LoggerFactory $loggerFactory)
     {
         $this->authService = $authService;
         $this->logger = $loggerFactory->addFileHandler(static::class)->createLogger();

@@ -6,10 +6,12 @@ use App\Auth\Domain\Entities\User;
 use App\Auth\Repository\UserRepository;
 use App\Auth\Repository\LogoutRepository;
 use App\Auth\Services\Interface\AuthServiceInterface;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
+use App\Auth\Repository\Interface\UserRepositoryInterface;
+use App\Auth\Repository\Interface\LogoutRepositoryInterface;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use GrowBitTech\Framework\Config\_Global;
 
 /**
  * @OA\Tag(
@@ -19,12 +21,12 @@ use GrowBitTech\Framework\Config\_Global;
  **/
 class AuthService implements AuthServiceInterface
 {
-    private UserRepository $userRepository;
-    private LogoutRepository $logoutRepository;
-    private _Global $globel;
+    private UserRepositoryInterface $userRepository;
+    private LogoutRepositoryInterface $logoutRepository;
+    private GlobalInterface $globel;
     private User $user;
 
-    public function __construct(UserRepository $userRepository,LogoutRepository $logoutRepository,_Global $globel)
+    public function __construct(UserRepositoryInterface $userRepository,LogoutRepositoryInterface $logoutRepository,GlobalInterface $globel)
     {
         $this->userRepository = $userRepository;
         $this->logoutRepository = $logoutRepository;

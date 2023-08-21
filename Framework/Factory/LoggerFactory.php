@@ -2,7 +2,7 @@
 
 namespace GrowBitTech\Framework\Factory;
 
-use GrowBitTech\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\RotatingFileHandler;
@@ -22,7 +22,7 @@ final class LoggerFactory
 
     private ?HandlerInterface $test = null;
 
-    public function __construct(_Global $globel)
+    public function __construct(GlobalInterface $globel)
     {
         $this->path = $globel->get('logger')["path"] ?? 'vfs://root/logs';
         $this->level = $globel->get('logs')["level"] ?? Level::Debug;

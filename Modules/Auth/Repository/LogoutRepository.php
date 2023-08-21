@@ -4,6 +4,7 @@ namespace App\Auth\Repository;
 
 use App\Auth\Domain\Entities\BlacklistToken;
 use App\Auth\Repository\Interface\LogoutRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
 
 /**
@@ -13,9 +14,9 @@ class LogoutRepository implements LogoutRepositoryInterface
 {
     /**
      * Summary of __construct
-     * @param \Doctrine\ORM\EntityManager $em
+     * @param \Doctrine\ORM\EntityManagerInterface $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

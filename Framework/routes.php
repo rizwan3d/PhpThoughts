@@ -1,6 +1,6 @@
 <?php
 
-use GrowBitTech\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use GrowBitTech\Framework\RouteLoader\FileLoader;
 use GrowBitTech\Framework\RouteLoader\RouteCollector;
 use GrowBitTech\Framework\Swagger\Swagger;
@@ -9,7 +9,7 @@ use Slim\App;
 
 return function (App $app) {
 
-    if($app->getContainer()->get(_Global::class)->get('swager')){
+    if($app->getContainer()->get(GlobalInterface::class)->get('swager')){
         // Swagger Routes
         $app->get('/swageryaml', SwaggerYaml::class);
         $app->get('/swager', Swagger::class);

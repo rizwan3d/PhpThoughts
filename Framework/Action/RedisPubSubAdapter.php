@@ -2,7 +2,7 @@
 
 namespace GrowBitTech\Framework;
 
-use GrowBitTech\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 
 class RedisPubSubAdapter
 {
@@ -11,7 +11,7 @@ class RedisPubSubAdapter
     private $channel = 'socket';
     public $isRadis = false;
 
-    public function __construct(_Global $global)
+    public function __construct(GlobalInterface $global)
     {
         $settings = $global->get('socket');
         if ($settings['isRadis']) {

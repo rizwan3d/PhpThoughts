@@ -3,6 +3,7 @@
 namespace App\Auth\Presentation\Middleware;
 
 use App\Auth\Services\AuthService;
+use App\Auth\Services\Interface\AuthServiceInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
@@ -17,9 +18,9 @@ use Slim\Psr7\Response;
 */
 class AuthMiddleware
 {
-    private AuthService $authService;
+    private AuthServiceInterface $authService;
 
-    public function __construct(AuthService $authService)
+    public function __construct(AuthServiceInterface $authService)
     {
         $this->authService = $authService;
     }

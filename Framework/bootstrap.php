@@ -1,7 +1,7 @@
 <?php
 
 use DI\ContainerBuilder;
-use GrowBitTech\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use Slim\App;
 
 require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
@@ -19,7 +19,7 @@ $container = $containerBuilder->build();
 
 // Create Slim App instance
 $app = $container->get(App::class);
-$global = $container->get(_Global::class);
+$global = $container->get(GlobalInterface::class);
 
 // Register routes
 (require __DIR__.DIRECTORY_SEPARATOR.'routes.php')($app);
