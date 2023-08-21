@@ -17,14 +17,15 @@ PhpThoughts is a web application framework with expressive, elegant syntax. We b
 - Socket Server and Client.
 - Powerful Cli.
 - Based on onion architecture.
-- HTTP message interfaces (PSR-7)
-- HTTP Server Request Handlers, Middleware (PSR-15)
-- Autoloader (PSR-4)
-- Logger (PSR-3)
-- Code styles (PSR-12)
-- Single action controllers
-- Input validation
-- Console Commands
+- HTTP message interfaces (PSR-7).
+- HTTP Server Request Handlers, Middleware (PSR-15).
+- Autoloader (PSR-4).
+- Logger (PSR-3).
+- Code styles (PSR-12).
+- Single action controllers.
+- Input validation.
+- Console Commands.
+- Swager (Auto Generate).
 
 PhpThoughts is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation gives you a complete toolset required to build any application with which you are tasked.
 
