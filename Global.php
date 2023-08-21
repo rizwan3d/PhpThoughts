@@ -13,7 +13,7 @@ $settings = [
 
     // Path where Doctrine will cache the processed metadata
     // when 'dev_mode' is false.
-    'cache_dir' => __DIR__.'/cache/doctrine',
+    'cache_dir' => __DIR__.'\Cache',
 
     'socket' => [
         'host'         => 'localhost',
