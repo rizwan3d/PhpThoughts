@@ -12,10 +12,10 @@
 PhpThoughts is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. PhpThoughts attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
 - Simple, fast attribute based routing engine.
-- Powerful dependency injection container (PSR-11).
-- Doctrine database ORM.
-- Socket Server and Client.
-- Powerful Cli.
+- Powerful [dependency injection](https://php-di.org/) container (PSR-11).
+- [Doctrine](https://www.doctrine-project.org/projects/doctrine-orm/en/2.16/index.html) database ORM.
+- [Socket server and client](http://socketo.me/).
+- Powerful CLI.
 - Based on onion architecture.
 - HTTP message interfaces (PSR-7).
 - HTTP Server Request Handlers, Middleware (PSR-15).
@@ -23,7 +23,7 @@ PhpThoughts is a web application framework with expressive, elegant syntax. We b
 - Logger (PSR-3).
 - Code styles (PSR-12).
 - Single action controllers.
-- Input validation.
+- [Input validation](https://github.com/rakit/validation).
 - Console Commands.
 - Swager (Auto Generate).
 
@@ -53,6 +53,11 @@ Directory structure: [https://medium.com/@rizwan3d/my-next-project-directory-str
 #### Update Framework
 > php ./brain --db --update
 
+
+## Other Pkg
+- [vaibhavpandeyvpz/doctrine-datatables](https://vaibhavpandey.com/doctrine-datatables/)
+- [slim/http-cache](https://github.com/slimphp/Slim-HttpCache)
+- [guzzlehttp/guzzle](https://docs.guzzlephp.org/en/stable/)
 
 ## Contributing
 
