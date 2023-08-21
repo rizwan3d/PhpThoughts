@@ -15,6 +15,11 @@ class Action
         return $this->responce($response, $data, 200);
     }
 
+    protected function notFound(Response $response, $data)
+    {
+        return $this->responce($response, ['status' => 'error', 'error' => $data['error']], 400);
+    }
+
     protected function responce(Response $response, $data, $code)
     {
         $response->getBody()->write(json_encode($data));
