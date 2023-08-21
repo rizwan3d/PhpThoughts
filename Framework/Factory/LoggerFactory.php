@@ -51,7 +51,6 @@ final class LoggerFactory
     public function addFileHandler($action, Level $level = null): self
     {
         $filename = sprintf('%s/%s', $this->path, $action . ".log");
-        print_r($filename);
         $rotatingFileHandler = new RotatingFileHandler($filename, 0, $level ?? $this->level, true, 0777);
 
         // The last "true" here tells monolog to remove empty []'s
