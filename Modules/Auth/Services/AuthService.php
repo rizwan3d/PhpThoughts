@@ -11,6 +11,12 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GrowBitTech\Framework\Config\_Global;
 
+/**
+ * @OA\Tag(
+ *     name="User",
+ *     description="User related operations"
+ * )
+ **/
 class AuthService implements AuthServiceInterface
 {
     private UserRepository $userRepository;
@@ -47,23 +53,23 @@ class AuthService implements AuthServiceInterface
     public function verifyJWT($token) : User | array {
         try {
             if($this->logoutRepository->isBlacklisted($token))
-                return ['error' => 'Invalid Token.'];
+                return ['status' => 'error','error' => ['Invalid Token.']];
             $decoded = JWT::decode($token, new Key($this->globel->get('authkey'), 'HS256'));
             
             $now = new DateTimeImmutable();
             if ($decoded->iat > $now->getTimestamp() ||
                 $decoded->exp < $now->getTimestamp())
-                return ['error' => 'Invalid Token.'];
+                return ['status' => 'error','error' => ['Invalid Token.']];
 
             $user = $this->findUser([ 'id' => $decoded->data->user_id]);
             if ($user) {
                 $this->setUser($user);
                 return $user;
             } else {
-                return ['error' => 'Invalid Token.'];
+                return ['status' => 'error','error' => ['Invalid Token.']];
             }
         } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
+            return ['status' => 'error','error' => $e->getMessage()];
         }
     }
 

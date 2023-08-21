@@ -12,25 +12,54 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
 
-/**
+ /**
  * @OA\Post(
  *     path="/login",
- *     tags={"login"},
+ *     tags={"User"},
  *     summary="Login user",
- *     description=".",
+ *     description="Logs in a user by providing email and password.",
  *     operationId="loginUser",
- *
  *     @OA\Response(
- *         response="default",
- *         description="successful operation"
+ *         response=200,
+ *         description="Successful operation",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="status", type="string", example="success"),
+ *             @OA\Property(property="data", ref="#/components/schemas/User")
+ *         )
  *     ),
- *
+ *     @OA\Response(
+ *         response=400,
+ *         description="User name or password is invalid",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="status", type="string", example="error"),
+ *             @OA\Property(property="error", type="array", @OA\Items(type="string"))
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=403,
+ *         description="Validation error",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="status", type="string", example="error"),
+ *             @OA\Property(property="error", type="array", @OA\Items(type="string"))
+ *         )
+ *     ),
  *     @OA\RequestBody(
- *         description="Login user object",
+ *         description="User email and password",
  *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(property="email", type="string"),
+ *                 @OA\Property(property="password", type="string"),
+ *                 example={"email": "example@ok.com", "password": "password"}
+ *             )
+ *         )
  *     )
  * )
  */
+
 final class LoginAction extends Action
 {
     public static $validations = [
@@ -48,6 +77,13 @@ final class LoginAction extends Action
         $this->logger = $loggerFactory->addFileHandler(static::class)->createLogger();
     }
 
+    /**
+     * Endpoint for handling the login action
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param mixed $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     #[Route('/login', ['POST'], ValidationMiddleware::class)]
     public function __invoke(Request $request, Response $response, $args): Response
     {
@@ -57,6 +93,12 @@ final class LoginAction extends Action
 
         $reuslt = $this->authService->loginUser($data['email'], $data['password']);
 
-        return $this->success($response, ['msg' => 'ok', 'data' => $reuslt]);
+        if(is_array($reuslt) && isset($reuslt['error'])){
+            $this->logger->error('Login failed', ['error' => $reuslt['error']]);
+            return $this->notFound($response, $reuslt);
+        }
+
+        $this->logger->info('Login successful', ['user_id' => $reuslt->id]);
+        return $this->success($response, ['status' => 'success', 'data' => $reuslt]);
     }
 }

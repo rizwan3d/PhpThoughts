@@ -25,7 +25,8 @@ class ValidationMiddleware
 
         if ($validation->fails()) {
             $error = [
-                'error' => [$validation->errors()->firstOfAll()],
+                'status' => 'error',
+                'error'  => $validation->errors()->firstOfAll(),
             ];
             $response = new Response();
             $response->getBody()->write(json_encode($error, JSON_UNESCAPED_UNICODE));

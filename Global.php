@@ -6,7 +6,7 @@ $settings = [
 
     'logger' => [
         // Log file location
-        'path' => __DIR__ . '\logs',
+        'path' => __DIR__ . '\Logs',
         // Default log level
         'level' => \Monolog\Level::Info,
     ],
