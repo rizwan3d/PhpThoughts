@@ -5,15 +5,15 @@ namespace App\Auth\Repository;
 use App\Auth\Domain\Entities\BlacklistToken;
 use App\Auth\Repository\Interface\LogoutRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityManager;
 
 /**
- * Summary of LogoutRepository
+ * Summary of LogoutRepository.
  */
 class LogoutRepository implements LogoutRepositoryInterface
 {
     /**
-     * Summary of __construct
+     * Summary of __construct.
+     *
      * @param \Doctrine\ORM\EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
@@ -22,37 +22,42 @@ class LogoutRepository implements LogoutRepositoryInterface
     }
 
     /**
-     * Summary of logout
+     * Summary of logout.
+     *
      * @param mixed $token
+     *
      * @return bool
      */
-    public function logout($token) : bool{
-        try{
-        $newToken = new BlacklistToken($token);
+    public function logout($token): bool
+    {
+        try {
+            $newToken = new BlacklistToken($token);
 
-        $this->em->persist($newToken);
-        $this->em->flush();
-        }
-        catch(\Exception $e)
-        {
+            $this->em->persist($newToken);
+            $this->em->flush();
+        } catch(\Exception $e) {
             return false;
         }
+
         return true;
     }
 
     /**
-     * Summary of isBlacklisted
+     * Summary of isBlacklisted.
+     *
      * @param mixed $token
+     *
      * @return bool
      */
     public function isBlacklisted($token): bool
     {
         $data = $this->em
         ->getRepository(BlacklistToken::class)
-        ->findBy([ 'token' => $token]);
+        ->findBy(['token' => $token]);
 
-        if(count($data) > 0)
+        if (count($data) > 0) {
             return true;
+        }
 
         return false;
     }

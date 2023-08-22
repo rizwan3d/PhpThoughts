@@ -2,20 +2,19 @@
 
 namespace App\Auth\Presentation\Middleware;
 
-use App\Auth\Services\AuthService;
 use App\Auth\Services\Interface\AuthServiceInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 
 /**
-*  @OA\SecurityScheme(
-*     type="http",
-*     securityScheme="bearerAuth",
-*     scheme= "bearer",
-*     bearerFormat= "JWT",
-* )
-*/
+ *  @OA\SecurityScheme(
+ *     type="http",
+ *     securityScheme="bearerAuth",
+ *     scheme= "bearer",
+ *     bearerFormat= "JWT",
+ * )
+ */
 class AuthMiddleware
 {
     private AuthServiceInterface $authService;
@@ -33,17 +32,19 @@ class AuthMiddleware
             if (preg_match("/Bearer\s+(.*)$/i", $header, $matches)) {
                 try {
                     $result = $this->authService->verifyJWT($matches[1]);
-                    if(is_array($result))
+                    if (is_array($result)) {
                         return $this->error($result);
+                    }
+
                     return $handler->handle($request);
                 } catch (\Exception $e) {
-                    return $this->error(['status' => 'error','error' => $e->getMessage()]);
+                    return $this->error(['status' => 'error', 'error' => $e->getMessage()]);
                 }
             } else {
-                return $this->error(['status' => 'error','error' => ['Auth token cannot find.']]);
+                return $this->error(['status' => 'error', 'error' => ['Auth token cannot find.']]);
             }
         } else {
-            return $this->error(['status' => 'error','error' => ['Auth token cannot find.']]);
+            return $this->error(['status' => 'error', 'error' => ['Auth token cannot find.']]);
         }
     }
 

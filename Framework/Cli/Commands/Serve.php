@@ -23,7 +23,7 @@ final class Serve extends Command implements CommandInterface
         }
 
         $command = $command.' -t "'.dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'public"';
-        echo 'executing: '.$command. PHP_EOL;
+        echo 'executing: '.$command.PHP_EOL;
         exec($command);
     }
 }

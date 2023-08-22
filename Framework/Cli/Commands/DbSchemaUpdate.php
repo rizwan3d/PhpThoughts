@@ -2,14 +2,14 @@
 
 namespace GrowBitTech\Framework\Cli\Commands;
 
-use GrowBitTech\Framework\Cli\Command;
-use GrowBitTech\Framework\Cli\Interface\CommandInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
+use GrowBitTech\Framework\Cli\Command;
+use GrowBitTech\Framework\Cli\Interface\CommandInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 final class DbSchemaUpdate extends Command implements CommandInterface
 {
@@ -24,9 +24,9 @@ final class DbSchemaUpdate extends Command implements CommandInterface
 
         $paths = [];
 
-        echo 'Reading Schema .....' . PHP_EOL;
+        echo 'Reading Schema .....'.PHP_EOL;
 
-        foreach (scandir($path = dirname(__DIR__,3).DIRECTORY_SEPARATOR.'Modules') as $dir) {
+        foreach (scandir($path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Modules') as $dir) {
             if ($dir == '.' || $dir == '..' || $dir == 'Socket') {
                 continue;
             }
@@ -44,19 +44,18 @@ final class DbSchemaUpdate extends Command implements CommandInterface
 
         $this->schemaTool = new SchemaTool($entityManager);
         $this->classes = $entityManager->getMetadataFactory()->getAllMetadata();
-        echo 'Reading Schema Completed' . PHP_EOL;
+        echo 'Reading Schema Completed'.PHP_EOL;
 
         if (isset($this->argv['update'])) {
-            echo 'Updating Database Schema .....' . PHP_EOL;
+            echo 'Updating Database Schema .....'.PHP_EOL;
             $this->schemaTool->updateSchema($this->classes);
-            echo 'Update Database Schema Completed' . PHP_EOL;
-
+            echo 'Update Database Schema Completed'.PHP_EOL;
         }
 
         if (isset($this->argv['create'])) {
             echo 'Creating Database Schema .....\n';
             $this->schemaTool->createSchema($this->classes);
-            echo 'Create Database Schema Completed' . PHP_EOL;
+            echo 'Create Database Schema Completed'.PHP_EOL;
         }
-    }    
+    }
 }

@@ -29,5 +29,5 @@ final class LoginRequest extends Request
      *   description="The user's password hash"
      * )
      */
-    public string $password;  
+    public string $password;
 }
