@@ -77,19 +77,18 @@ final class LoginAction extends Action
 
     /**
      * Endpoint for handling the login action
-     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \App\Auth\Domain\Entities\LoginRequest $request
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param mixed $args
      * @return \Psr\Http\Message\ResponseInterface
      */
     #[Route('/login', ['POST'], ValidationMiddleware::class)]
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(LoginRequest $request, Response $response, $args): Response
     {
-        $requestDTO = LoginRequest::forArray($request->getParsedBody());
-    
+
         $this->logger->info('Called Auth servie');
 
-        $reuslt = $this->authService->loginUser($requestDTO->email, $requestDTO->password);
+        $reuslt = $this->authService->loginUser($request->email, $request->password);
 
         if(is_array($reuslt) && isset($reuslt['error'])){
             $this->logger->error('Login failed', ['error' => $reuslt['error']]);

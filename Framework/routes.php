@@ -1,6 +1,7 @@
 <?php
 
 use GrowBitTech\Framework\Config\Interface\GlobalInterface;
+use GrowBitTech\Framework\Strategies\RequestResponse;
 use GrowBitTech\Framework\RouteLoader\FileLoader;
 use GrowBitTech\Framework\RouteLoader\RouteCollector;
 use GrowBitTech\Framework\Swagger\Swagger;
@@ -9,6 +10,13 @@ use Slim\App;
 
 return function (App $app) {
 
+    /**
+    * Changing the default invocation strategy on the RouteCollector component
+    * will change it for every route being defined after this change being applied
+    */
+    $routeCollector = $app->getRouteCollector();
+    $routeCollector->setDefaultInvocationStrategy(new RequestResponse());
+    
     if($app->getContainer()->get(GlobalInterface::class)->get('swager')){
         // Swagger Routes
         $app->get('/swageryaml', SwaggerYaml::class);

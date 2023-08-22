@@ -2,8 +2,7 @@
 
 namespace App\Auth\Domain\Entities;
 
-use DateTimeImmutable;
-use GrowBitTech\Framework\DTO;
+use GrowBitTech\Framework\Request;
 
 /**
  * @OA\Schema(
@@ -11,7 +10,7 @@ use GrowBitTech\Framework\DTO;
  *     description="A LoginRequest model."
  * )
  */
-final class LoginRequest extends DTO
+final class LoginRequest extends Request
 {
     /**
      * @OA\Property(
