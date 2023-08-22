@@ -4,6 +4,7 @@ namespace App\Auth\Presentation\Action;
 
 use App\Auth\Services\AuthService;
 use App\Auth\Services\Interface\AuthServiceInterface;
+use App\Auth\Domain\Entities\LoginRequest;
 use GrowBitTech\Framework\Action;
 use GrowBitTech\Framework\Factory\LoggerFactory;
 use GrowBitTech\Framework\Middleware\ValidationMiddleware;
@@ -51,11 +52,7 @@ use Psr\Log\LoggerInterface;
  *         required=true,
  *         @OA\MediaType(
  *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(property="email", type="string"),
- *                 @OA\Property(property="password", type="string"),
- *                 example={"email": "example@ok.com", "password": "password"}
- *             )
+ *             @OA\Schema(ref="#/components/schemas/LoginRequest")
  *         )
  *     )
  * )
@@ -88,11 +85,11 @@ final class LoginAction extends Action
     #[Route('/login', ['POST'], ValidationMiddleware::class)]
     public function __invoke(Request $request, Response $response, $args): Response
     {
-        $data = (array) $request->getParsedBody();
-
+        $requestDTO = LoginRequest::forArray($request->getParsedBody());
+    
         $this->logger->info('Called Auth servie');
 
-        $reuslt = $this->authService->loginUser($data['email'], $data['password']);
+        $reuslt = $this->authService->loginUser($requestDTO->email, $requestDTO->password);
 
         if(is_array($reuslt) && isset($reuslt['error'])){
             $this->logger->error('Login failed', ['error' => $reuslt['error']]);

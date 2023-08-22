@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use GrowBitTech\Framework\DTO;
 
 /**
  * @OA\Schema(
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping\Table;
  * )
  */
 #[Entity, Table(name: 'users')]
-final class User
+final class User extends DTO
 {
     /**
      * @OA\Property(

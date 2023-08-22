@@ -7,9 +7,10 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use GrowBitTech\Framework\DTO;
 
 #[Entity, Table(name: 'blacklist_token')]
-final class BlacklistToken
+final class BlacklistToken extends DTO
 {
     #[Id,Column(type: 'string', unique: true, nullable: false)]
     public string $token;
