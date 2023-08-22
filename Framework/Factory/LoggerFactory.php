@@ -24,8 +24,8 @@ final class LoggerFactory
 
     public function __construct(GlobalInterface $globel)
     {
-        $this->path = $globel->get('logger')["path"] ?? 'vfs://root/logs';
-        $this->level = $globel->get('logs')["level"] ?? Level::Debug;
+        $this->path = $globel->get('logger')['path'] ?? 'vfs://root/logs';
+        $this->level = $globel->get('logs')['level'] ?? Level::Debug;
     }
 
     public function createLogger(string $name = null): LoggerInterface
@@ -50,7 +50,7 @@ final class LoggerFactory
 
     public function addFileHandler($action, Level $level = null): self
     {
-        $filename = sprintf('%s/%s', $this->path, $action . ".log");
+        $filename = sprintf('%s/%s', $this->path, $action.'.log');
         $rotatingFileHandler = new RotatingFileHandler($filename, 0, $level ?? $this->level, true, 0777);
 
         // The last "true" here tells monolog to remove empty []'s

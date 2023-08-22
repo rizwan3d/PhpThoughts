@@ -22,7 +22,7 @@ final class ExeCommand
         'socket' => Socket::class,
         'serve'  => Serve::class,
         'update' => Update::class,
-        'db' => DbSchemaUpdate::class,
+        'db'     => DbSchemaUpdate::class,
     ];
 
     public function call($command, $args)

@@ -3,11 +3,11 @@
 $settings = [
     'dev_mode' => true,  // prod
     'authkey'  => 'ASSIGNMENTKEY',
-    'swager' => true,
+    'swager'   => true,
 
     'logger' => [
         // Log file location
-        'path' => __DIR__ . '\Logs',
+        'path' => __DIR__.'\Logs',
         // Default log level
         'level' => \Monolog\Level::Info,
     ],

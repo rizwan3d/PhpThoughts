@@ -4,8 +4,8 @@ use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
-use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use GrowBitTech\Framework\Config\_Global;
+use GrowBitTech\Framework\Config\Interface\GlobalInterface;
 use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
@@ -55,7 +55,7 @@ $configStatic = [
 
         $entityManager = EntityManager::create($settings->get('db'), $config);
 
-        if($settings->get('AutoDBSchemaUpdate')){
+        if ($settings->get('AutoDBSchemaUpdate')) {
             $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
             $classes = $entityManager->getMetadataFactory()->getAllMetadata();
 
@@ -69,9 +69,9 @@ $configStatic = [
         return $entityManager;
     },
     EntityManagerInterface::class => DI\get(EntityManager::class),
-    GlobalInterface::class => DI\get(_Global::class),
+    GlobalInterface::class        => DI\get(_Global::class),
 ];
 
-
 $configDynamic = require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'di.php';
-return array_merge($configDynamic,$configStatic);
+
+return array_merge($configDynamic, $configStatic);

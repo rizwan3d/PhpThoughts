@@ -22,9 +22,9 @@ final class User extends DTO
     /**
      * @OA\Property(
      *   property="id",
-     *   type="integer", 
-     *   format="int64", 
-     *   readOnly=true, 
+     *   type="integer",
+     *   format="int64",
+     *   readOnly=true,
      *   description="The user id",
      *   example=1
      * )
@@ -44,7 +44,8 @@ final class User extends DTO
     public string $email;
 
     /**
-     * The user name
+     * The user name.
+     *
      * @var string
      *
      * @OA\Property(
