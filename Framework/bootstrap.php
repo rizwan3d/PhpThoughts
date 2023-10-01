@@ -28,4 +28,7 @@ $global = $container->get(GlobalInterface::class);
 // Register middleware
 (require __DIR__.DIRECTORY_SEPARATOR.'middleware.php')($app);
 
+// add basic helper functions
+require __DIR__.DIRECTORY_SEPARATOR.'helper.php';
+
 return $app;
