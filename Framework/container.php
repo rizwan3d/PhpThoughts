@@ -34,9 +34,9 @@ $configStatic = [
     EntityManager::class => function (ContainerInterface $container) {
         $settings = $container->get(GlobalInterface::class);
 
-        $cache = $settings->get('dev_mode') ?
+        $cache = $settings->get('DevMode') ?
             DoctrineProvider::wrap(new ArrayAdapter()) :
-            DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings->get('cache_dir')));
+            DoctrineProvider::wrap(new FilesystemAdapter(directory: $settings->get('CacheDir')));
 
         $paths = [];
         foreach (scandir($path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Modules') as $dir) {
@@ -48,12 +48,12 @@ $configStatic = [
 
         $config = Setup::createAttributeMetadataConfiguration(
             $paths,
-            $settings->get('dev_mode'),
+            $settings->get('DevMode'),
             null,
             $cache
         );
 
-        $entityManager = EntityManager::create($settings->get('db'), $config);
+        $entityManager = EntityManager::create($settings->get('DB'), $config);
 
         if ($settings->get('AutoDBSchemaUpdate')) {
             $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);

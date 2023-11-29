@@ -24,8 +24,8 @@ final class LoggerFactory
 
     public function __construct(GlobalInterface $globel)
     {
-        $this->path = $globel->get('logger')['path'] ?? 'vfs://root/logs';
-        $this->level = $globel->get('logs')['level'] ?? Level::Debug;
+        $this->path = $globel->get('Logger')['Path'] ?? 'vfs://root/logs';
+        $this->level = $globel->get('Logger')['Level'] ?? Level::Debug;
     }
 
     public function createLogger(string $name = null): LoggerInterface

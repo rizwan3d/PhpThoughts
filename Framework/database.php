@@ -7,7 +7,7 @@ use Slim\App;
 return function (App $app) {
     $settings = $app->getContainer()->get(GlobalInterface::class);
     $capsule = new DB();
-    $capsule->addConnection($settings->get('db'));
+    $capsule->addConnection($settings->get('DB'));
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
 };

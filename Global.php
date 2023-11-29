@@ -2,27 +2,27 @@
 
 $settings = [
     'php' => 'php83', // Remove this key if you to use default php
-    'dev_mode' => true,  // prod
-    'authkey'  => 'ASSIGNMENTKEY',
-    'swager'   => true,
+    'DevMode' => true,  // prod
+    'AuthKey'  => 'ASSIGNMENTKEY',
+    'Swager'   => true,
 
-    'logger' => [
+    'Logger' => [
         // Log file location
-        'path' => __DIR__.'\Logs',
+        'Path' => __DIR__.'\Logs',
         // Default log level
-        'level' => \Monolog\Level::Info,
+        'Level' => \Monolog\Level::Info,
     ],
 
     // Path where Doctrine/DI will cache the processed metadata
-    // when 'dev_mode' is false.
-    'cache_dir' => __DIR__.'\Cache',
+    // when 'DevMode' is false.
+    'CacheDir' => __DIR__.'\Cache',
 
-    'socket' => [
-        'host'         => 'localhost',
-        'port'         => '6001',
-        'isRadis'      => true,
-        'radisChannel' => 'socket',
-        'redis'        => [
+    'Socket' => [
+        'Host'         => 'localhost',
+        'Port'         => '6001',
+        'IsRadis'      => true,
+        'RadisChannel' => 'socket',
+        'Redis'        => [
             'scheme'             => 'tcp',
             'host'               => '127.0.0.1',
             'port'               => 6379,
@@ -36,7 +36,7 @@ $settings = [
     // needs a 'path' parameter and doesn't use most of the ones shown in this example).
     // Refer to the Doctrine documentation to see the full list
     // of valid parameters: https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html
-    'db' => [
+    'DB' => [
         'driver'   => 'pdo_mysql',
         'host'     => '127.0.0.1',
         'port'     => 3306,

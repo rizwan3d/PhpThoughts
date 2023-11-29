@@ -12,7 +12,7 @@ final class Socket extends Command implements CommandInterface
     public function run(): void
     {
         $settings = $this->settings->get('socket');
-        $app = new \Ratchet\App($settings['host'], $settings['port']);
+        $app = new \Ratchet\App($settings['Host'], $settings['Port']);
 
         $path = dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'Modules'.DIRECTORY_SEPARATOR.'Socket'.DIRECTORY_SEPARATOR;
         $fileLoader = new FileLoader([$path]);

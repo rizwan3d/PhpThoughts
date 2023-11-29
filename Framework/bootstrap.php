@@ -8,8 +8,8 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'vendor'.DIREC
 $setings = require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Global.php';
 
 $containerBuilder = new ContainerBuilder();
-if (!$setings['dev_mode']) {
-    $containerBuilder->enableCompilation($setings['cache_dir']);
+if (!$setings['DevMode']) {
+    $containerBuilder->enableCompilation($setings['CacheDir']);
 }
 
 // Add DI container definitions

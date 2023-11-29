@@ -18,9 +18,9 @@ final class DbSchemaUpdate extends Command implements CommandInterface
 
     public function run(): void
     {
-        $cache = $this->settings->get('dev_mode') ?
+        $cache = $this->settings->get('DevMode') ?
             DoctrineProvider::wrap(new ArrayAdapter()) :
-            DoctrineProvider::wrap(new FilesystemAdapter(directory: $this->settings->get('cache_dir')));
+            DoctrineProvider::wrap(new FilesystemAdapter(directory: $this->settings->get('CacheDir')));
 
         $paths = [];
 
@@ -35,7 +35,7 @@ final class DbSchemaUpdate extends Command implements CommandInterface
 
         $config = Setup::createAttributeMetadataConfiguration(
             $paths,
-            $this->settings->get('dev_mode'),
+            $this->settings->get('DevMode'),
             null,
             $cache
         );

@@ -16,7 +16,7 @@ return function (App $app) {
     $routeCollector = $app->getRouteCollector();
     $routeCollector->setDefaultInvocationStrategy(new RequestResponse());
 
-    if ($app->getContainer()->get(GlobalInterface::class)->get('swager')) {
+    if ($app->getContainer()->get(GlobalInterface::class)->get('Swager')) {
         // Swagger Routes
         $app->get('/swageryaml', SwaggerYaml::class);
         $app->get('/swager', Swagger::class);

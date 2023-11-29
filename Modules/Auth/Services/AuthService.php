@@ -61,7 +61,7 @@ class AuthService implements AuthServiceInterface
             if ($this->logoutRepository->isBlacklisted($token)) {
                 return ['status' => 'error', 'error' => ['Invalid Token.']];
             }
-            $decoded = JWT::decode($token, new Key($this->globel->get('authkey'), 'HS256'));
+            $decoded = JWT::decode($token, new Key($this->globel->get('AuthKey'), 'HS256'));
 
             $now = new DateTimeImmutable();
             if ($decoded->iat > $now->getTimestamp() ||
@@ -93,7 +93,7 @@ class AuthService implements AuthServiceInterface
             ],
         ];
 
-        return JWT::encode($token, $this->globel->get('authkey'), 'HS256');
+        return JWT::encode($token, $this->globel->get('AuthKey'), 'HS256');
     }
 
     public function getAllUser(): ?array

@@ -8,18 +8,18 @@ class RedisPubSubAdapter
 {
     private $client;
     private $adapter;
-    private $channel = 'socket';
+    private $channel = 'Socket';
     public $isRadis = false;
 
     public function __construct(GlobalInterface $global)
     {
-        $settings = $global->get('socket');
-        if ($settings['isRadis']) {
+        $settings = $global->get('Socket');
+        if ($settings['IsRadis']) {
             $this->isRadis = true;
-            if (isset($settings['radisChannel'])) {
-                $this->channel = $settings['radisChannel'];
+            if (isset($settings['RadisChannel'])) {
+                $this->channel = $settings['RadisChannel'];
             }
-            $client = new Predis\Client($settings['redis']);
+            $client = new \Predis\Client($settings['Redis']);
             $this->adapter = new \Superbalist\PubSub\Redis\RedisPubSubAdapter($client);
         }
     }
