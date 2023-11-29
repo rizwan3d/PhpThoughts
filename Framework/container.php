@@ -53,7 +53,19 @@ $configStatic = [
             $cache
         );
 
-        $entityManager = EntityManager::create($settings->get('DB'), $config);
+        $DB = $settings->get('DB');
+
+        $DB = [
+            'driver'   => $DB['Driver'],
+            'host'     => $DB['Host'],
+            'port'     => $DB['Port'],
+            'dbname'   => $DB['DbName'],
+            'user'     => $DB['User'],
+            'password' => $DB['Password'],
+            'charset'  => $DB['Charset']
+        ];
+
+        $entityManager = EntityManager::create($DB, $config);
 
         if ($settings->get('AutoDBSchemaUpdate')) {
             $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);

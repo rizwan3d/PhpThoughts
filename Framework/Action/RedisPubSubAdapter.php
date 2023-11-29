@@ -19,6 +19,15 @@ class RedisPubSubAdapter
             if (isset($settings['RadisChannel'])) {
                 $this->channel = $settings['RadisChannel'];
             }
+
+            $settings['Redis'] = [
+                'scheme'             => $settings['Redis']['Scheme'],
+                'host'               => $settings['Redis']['Host'],
+                'port'               => $settings['Redis']['Port'],
+                'database'           => $settings['Redis']['Database'],
+                'read_write_timeout' => $settings['Redis']['ReadWriteTimeout'],
+            ];
+
             $client = new \Predis\Client($settings['Redis']);
             $this->adapter = new \Superbalist\PubSub\Redis\RedisPubSubAdapter($client);
         }

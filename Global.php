@@ -23,11 +23,11 @@ $settings = [
         'IsRadis'      => true,
         'RadisChannel' => 'socket',
         'Redis'        => [
-            'scheme'             => 'tcp',
-            'host'               => '127.0.0.1',
-            'port'               => 6379,
-            'database'           => 0,
-            'read_write_timeout' => 0,
+            'Scheme'             => 'tcp',
+            'Host'               => '127.0.0.1',
+            'Port'               => 6379,
+            'Database'           => 0,
+            'ReadWriteTimeout' => 0,
         ],
     ],
 
@@ -37,13 +37,13 @@ $settings = [
     // Refer to the Doctrine documentation to see the full list
     // of valid parameters: https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html
     'DB' => [
-        'driver'   => 'pdo_mysql',
-        'host'     => '127.0.0.1',
-        'port'     => 3306,
-        'dbname'   => 'noname',
-        'user'     => 'root',
-        'password' => '',
-        'charset'  => 'utf8',
+        'Driver'   => 'pdo_mysql',
+        'Host'     => '127.0.0.1',
+        'Port'     => 3306,
+        'DbName'   => 'noname',
+        'User'     => 'root',
+        'Password' => '',
+        'Charset'  => 'utf8',
     ],
     'AutoDBSchemaUpdate' => true,
 ];
