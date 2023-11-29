@@ -33,18 +33,18 @@ class Command implements CommandInterface
     }
 
     /**
-     * Color output text for the CLI
+     * Color output text for the CLI.
      *
-     * @param string $text to color
-     * @param string $color of text
+     * @param string $text       to color
+     * @param string $color      of text
      * @param string $background color
      */
-    function colorize($text, $color, $bold = FALSE)
+    public function colorize($text, $color, $bold = false)
     {
         // Standard CLI colors
-        $colors = array_flip(array(30 => 'gray', 'red', 'green', 'yellow', 'blue', 'purple', 'cyan', 'white', 'black'));
+        $colors = array_flip([30 => 'gray', 'red', 'green', 'yellow', 'blue', 'purple', 'cyan', 'white', 'black']);
 
         // Escape string with color information
-        return "\033[" . ($bold ? '1' : '0') . ';' . $colors[$color] . "m$text\033[0m";
+        return "\033[".($bold ? '1' : '0').';'.$colors[$color]."m$text\033[0m";
     }
 }
