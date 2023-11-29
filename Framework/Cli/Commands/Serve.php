@@ -9,7 +9,10 @@ final class Serve extends Command implements CommandInterface
 {
     public function run(): void
     {
-        $command = 'php -S ';
+        $phpExeFile = $this->settings->get('php');
+        $phpExeFile = !isset($phpExeFile) || $phpExeFile == null ? 'php' : $phpExeFile;
+
+        $command = "$phpExeFile -S ";
         if (isset($this->argv['host'])) {
             $command = $command.$this->argv['host'];
         } else {
