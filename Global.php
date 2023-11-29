@@ -1,8 +1,8 @@
 <?php
 
 $settings = [
-    'php' => 'php83', // Remove this key if you to use default php
-    'DevMode' => true,  // prod
+    'php'      => 'php83', // Remove this key if you to use default php
+    'DevMode'  => true,  // prod
     'AuthKey'  => 'ASSIGNMENTKEY',
     'Swager'   => true,
 
