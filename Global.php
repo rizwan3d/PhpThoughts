@@ -1,8 +1,8 @@
 <?php
 
 $settings = [
-    'php' => 'php83', // Remove this key if you to use default php
-    'DevMode' => true,  // prod
+    'php'      => 'php83', // Remove this key if you to use default php
+    'DevMode'  => true,  // prod
     'AuthKey'  => 'ASSIGNMENTKEY',
     'Swager'   => true,
 
@@ -27,7 +27,7 @@ $settings = [
             'Host'               => '127.0.0.1',
             'Port'               => 6379,
             'Database'           => 0,
-            'ReadWriteTimeout' => 0,
+            'ReadWriteTimeout'   => 0,
         ],
     ],
 

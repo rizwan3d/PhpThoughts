@@ -62,7 +62,7 @@ $configStatic = [
             'dbname'   => $DB['DbName'],
             'user'     => $DB['User'],
             'password' => $DB['Password'],
-            'charset'  => $DB['Charset']
+            'charset'  => $DB['Charset'],
         ];
 
         $entityManager = EntityManager::create($DB, $config);
